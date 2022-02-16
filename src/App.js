@@ -3,7 +3,9 @@ import React from 'react';
 import {Route,Routes} from 'react-router-dom';
 import Regis from './regis';
 import Login from './login';
-import Home from './Home';
+import Home from './components/Home';
+import Listpage from './components/listpage';
+import Chat from './components/Chat';
 function App () {
 
   
@@ -14,6 +16,8 @@ function App () {
     <Route exact path='/'element={<Login/>}></Route>
     <Route  path='/regis'exact element={<Regis/>}></Route>
     <Route  path='/Home'exact element={<Home/>}></Route>
+    <Route path='/listpage' exact element={<Listpage/>}></Route>
+    <Route path='/chat' exact element={<Chat/>}></Route>
     </Routes>
     </div>
  

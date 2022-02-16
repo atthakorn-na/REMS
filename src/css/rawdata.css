@@ -1,0 +1,30 @@
+body{
+    background-color: #E5E5E5;
+}
+.list_content{
+    position: absolute;
+    height: 100%;
+    width: 500;
+    left: 310px;
+    margin-top: 12px ;
+    
+
+   
+}
+.list_head{
+    
+    width: 1120px;
+   
+}
+.custombtn{
+    width: 125px;
+    height: 43px;
+    margin-top: -49px;
+}
+.home_content{
+    position: absolute;
+    height: 100%;
+    width: calc(100%-200px);
+    left: 310px;
+    margin-top: 12px ;
+}

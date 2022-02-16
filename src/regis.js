@@ -1,13 +1,33 @@
-import React,{Component} from 'react';
+import React,{Component,useState } from 'react';
+import { Navigate  ,Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/regis.css';
-class regis extends Component{
-    render(){
+import firebase  from 'firebase/compat';
+const Regis= () =>{
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      const { email, password } = e.target.elements;
+
+      try {
+
+        firebase.auth().createUserWithEmailAndPassword(email.value, password.value);
+          setCurrentUser(true);
+
+      } catch(error) {
+          alert(error);
+      }
+  }
+
+     if (currentUser) {
+      return <Navigate  to="/home" />
+      }
         return(
             <div className='regis'>
                 <header className='regis-header'>
                 <div className="regisbox">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <a3>สร้างบัญชีผู้ใช้</a3>
                   <p>ง่ายและรวดเร็ว</p>
                   <br></br>
@@ -19,13 +39,13 @@ class regis extends Component{
                   <br></br>
                   <div className="form-email">
                   <div class="form-email-real">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="อีเมลล์หรือชื่อผู้ใช้"></input>
+                    <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="อีเมลล์หรือชื่อผู้ใช้"></input>
                   </div>
                 </div>
                 <br></br>
                 <div class="form-password">
                   <div class="form-pass-real">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="รหัสผ่าน"></input>
+                    <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="รหัสผ่าน"></input>
                   </div>
                </div>
                <br></br>
@@ -46,6 +66,7 @@ class regis extends Component{
                  
                 <label for="exampleFormControlSelect1">วัน</label>
                 <select class="form-control-day" id="exampleFormControlSelect1">
+                <option>--</option>
                   <option>1</option> <option>2</option> <option>3</option>
                   <option>4</option> <option>5</option><option>6</option>
                   <option>7</option> <option>8</option> <option>9</option>
@@ -60,6 +81,7 @@ class regis extends Component{
                 </select>
                 <label for="exampleFormControlSelect1">ㅤเดือน</label>
                 <select class="form-control-month" id="exampleFormControlSelect1">
+                  <option>--------</option>
                   <option>มกราคม</option>
                   <option>กุมภาพันธ์</option>
                   <option>มีนาคม</option>
@@ -75,6 +97,7 @@ class regis extends Component{
                 </select>
                 <label for="exampleFormControlSelect1">ㅤปีเกิด</label>
                 <select class="form-control-year" id="exampleFormControlSelect1">
+                <option>----</option>
                   <option>1999</option>
                   <option>2000</option>
                   <option>2001</option>
@@ -93,6 +116,6 @@ class regis extends Component{
                 </header>
             </div>
         );
-    }
+    
 }
-export default regis;
+export default Regis;

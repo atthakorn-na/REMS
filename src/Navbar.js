@@ -1,40 +1,73 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Component } from 'react';
 import vintage from './image/vintage-logo.png';
-import './navbar/nav.css';
+import 'boxicons';
+import './css/nav.css';
 
-const Navbar = () =>{
+class Navbar extends Component{
+    render(){
     return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="!#"></a>
-        <img src={vintage} width="30" height="30" class="d-inline-block align-top" alt=""></img>
-          Monment
-    
-        <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-            <a class="nav-link" href="!#">Home <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="!#">Sign up</a>
-            </li>
-            
-            <li class="nav-item">
-            <a class="nav-link " href="!#">Log in</a>
-            </li>
-            <li class="nav-item-space">
-            <a class="nav-link disabled" href="!#">   </a>
-            </li>
-            <li class="nav-item-space">
-            <a class="nav-link disabled" href="!#">   </a>
-            </li>
-        </ul>
-        
+      <div>
+      <head>
+      <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'></link>
+      </head>
+      <div class='sidebar'>
+        <div class='logo_content'>
+          <div class='logo'>
+            <i class='bx bxl-c-plus-plus'></i>
+            <div class='logo_name'>REMS</div>
+          </div>
+          
         </div>
-    </nav>
-    )
+          <ul class='nav_list'>
+            <li>
+              <a href='/home'>
+                <i class='bx bx-grid-alt'></i>
+                <span class='links_name'>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href='/listpage'>
+              <i class='bx bx-list-ul' ></i>
+                <span class='links_name'>รายการห้องพัก</span>
+              </a>
+            </li>
+            <li>
+              <a href='#'>
+                <i class='bx bx-chat'></i>
+                <span class='links_name'>กล่องข้อความ</span>
+              </a>
+            </li>
+            <li>
+              <a href='#'>
+              <i class='bx bxs-book-open' ></i>
+                <span class='links_name'>อนุมัติการปล่อยเช่า</span>
+              </a>
+            </li>
+            <li>
+              <a href='#'>
+                <i class='bx bx-user'></i>
+                <span class='links_name'>จัดการบัญชีผู้ใช้</span>
+              </a>
+            </li>
+          </ul>
+          <div class='profile_content'>
+            <div class='profile'>
+              <div class='profile_details'>
+                <img src=''alt=''></img>
+                <div class='name_job'>
+                  <div class='name'>Pinpong kongkapun</div>
+                  
+                  <div class='job'>Owner</div>
+                  </div>
+              </div>
+            </div>
+            <i class='bx bx-log-out' id="log_out"></i>
+          </div>
+      </div>
+      </div>
+    );
+    }
 }
 
 export default Navbar;
