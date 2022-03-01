@@ -1,11 +1,125 @@
-import {useState,useEffect,Component} from 'react';
+import {useState,useEffect,Component,Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/js/bootstrap.min.js";
+import { Modal } from 'react-bootstrap';
 import 'boxicons';
+import { nanoid } from "nanoid";
 import '../css/rawdata.css';
-
+import firebase from '../utils/firebase';
 import Navbar from '../Navbar';
-class listpage extends Component{
-    render(){
+import data from "./mock-data.json";
+import ReadOnlyRow from "../components/ReadOnlyRow";
+import EditableRow from "../components/EditableRow";
+
+const Listpage = ()=>{
+    const [contacts, setContacts] = useState(data);
+    const [addFormData, setAddFormData] = useState({
+        fullName: "",
+        address: "",
+        phoneNumber: "",
+        email: "",
+      });
+    const [editFormData, setEditFormData] = useState({
+        fullName: "",
+        address: "",
+        phoneNumber: "",
+        email: "",
+      });
+    const [editContactId, setEditContactId] = useState(null);
+
+    //add
+    const handleAddFormChange = (event) => {
+        event.preventDefault();
+        
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
+        
+        const newFormData = { ...addFormData };
+        newFormData[fieldName] = fieldValue;
+        
+        setAddFormData(newFormData);
+    };
+    const handleAddFormSubmit = (event) => {
+        event.preventDefault();
+    
+        const newContact = {
+          id: nanoid(),
+          fullName: addFormData.fullName,
+          address: addFormData.address,
+          phoneNumber: addFormData.phoneNumber,
+          email: addFormData.email,
+        };
+    
+        const newContacts = [...contacts, newContact];
+        setContacts(newContacts);
+      };
+    //edit
+    const handleEditFormChange = (event) => {
+        event.preventDefault();
+    
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
+    
+        const newFormData = { ...editFormData };
+        newFormData[fieldName] = fieldValue;
+    
+        setEditFormData(newFormData);
+      };
+    const handleEditFormSubmit = (event) => {
+        event.preventDefault();
+    
+        const editedContact = {
+          id: editContactId,
+          fullName: editFormData.fullName,
+          address: editFormData.address,
+          phoneNumber: editFormData.phoneNumber,
+          email: editFormData.email,
+        };
+    
+        const newContacts = [...contacts];
+    
+        const index = contacts.findIndex((contact) => contact.id === editContactId);
+    
+        newContacts[index] = editedContact;
+    
+        setContacts(newContacts);
+        setEditContactId(null);
+      };
+    
+      const handleEditClick = (event, contact) => {
+        event.preventDefault();
+        setEditContactId(contact.id);
+    
+        const formValues = {
+          fullName: contact.fullName,
+          address: contact.address,
+          phoneNumber: contact.phoneNumber,
+          email: contact.email,
+        };
+    
+        setEditFormData(formValues);
+      };
+    
+    const handleCancelClick = () => {
+        setEditContactId(null);
+      };
+    
+    const handleDeleteClick = (contactId) => {
+        const newContacts = [...contacts];
+    
+        const index = contacts.findIndex((contact) => contact.id === contactId);
+    
+        newContacts.splice(index, 1);
+    
+        setContacts(newContacts);
+      };
+
+
+    //modal
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+        
         return(
             <div>
                 <body>
@@ -14,10 +128,100 @@ class listpage extends Component{
                         <h1>รายการห้องพัก</h1>
 
                         <div class="gap-2 d-md-flex justify-content-md-end  ">
-                            <a href="/regis" class="btn btn-primary custombtn "   type="button">+เพิ่มห้องพัก</a>
+                            <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
+                                จัดการห้องพัก
+                            </button>
+
+                            <Modal show={show} onHide={handleClose} animation={false}>
+                                <Modal.Header closeButton>
+                                <Modal.Title>จัดการห้องพัก</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <form onSubmit={handleAddFormSubmit}>
+                                        <input
+                                        type="text"
+                                        name="fullName"
+                                        required="required"
+                                        placeholder="ชื่อโครงการ..."
+                                        onChange={handleAddFormChange}
+                                        />
+                                        <input
+                                        type="text"
+                                        name="address"
+                                        required="required"
+                                        placeholder="ที่อยู่โครงการ..."
+                                        onChange={handleAddFormChange}
+                                        />
+                                        <input
+                                        type="text"
+                                        name="phoneNumber"
+                                        required="required"
+                                        placeholder="ประเภทห้อง..."
+                                        onChange={handleAddFormChange}
+                                        />
+                                        <input
+                                        type="email"
+                                        name="email"
+                                        required="required"
+                                        placeholder="ค่าเช่า..."
+                                        onChange={handleAddFormChange}
+                                        />
+                                        <button type="submit">Add</button>
+                                    </form>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                <button variant="secondary"class="btn btn-primary modalbtn" onClick={handleClose}>
+                                    บันทึก
+                                </button>
+                                <button variant="primary" class="btn btn-primary modalbtn"onClick={handleClose}>
+                                ยกเลิก
+                                </button>
+                                </Modal.Footer>
+                            </Modal>
                         </div>
                         </div>
+
+                        <div className='content_tablelist'>
+                    <form >
+                        <table>
+                        <thead>
+                            <h3>ห้องพักว่าง</h3>
+                            <tr>
+                            <th>ชื่อโครงการ</th>
+                            <th>ที่อยู่</th>
+                            <th>เบอร์ติดต่อ</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {contacts.map((contact) => (
+                            <Fragment>
+                                {editContactId === contact.id ? (
+                                <EditableRow
+                                    editFormData={editFormData}
+                                    handleEditFormChange={handleEditFormChange}
+                                    handleCancelClick={handleCancelClick}
+                                />
+                                ) : (
+                                <ReadOnlyRow
+                                    contact={contact}
+                                    handleEditClick={handleEditClick}
+                                    handleDeleteClick={handleDeleteClick}
+                                />
+                                )}
+                            </Fragment>
+                            ))}
+                        </tbody>
+                        </table>
+                    </form>
+                        
+
                     </div>
+                    </div>
+                    
+
+
                 </body>
                 
                 <div>  
@@ -29,9 +233,9 @@ class listpage extends Component{
           
           </div>
         );
-    }
+    
     
 
 
 }
-export default listpage;
+export default Listpage;

@@ -58,7 +58,7 @@ const Regis= () =>{
                <br></br>
                <div class="form-number">
                   <div class="form-pass-real">
-                    <input type="number" class="form-control" id="inputPassword3" placeholder="เบอร์โทรศัพท์"></input>
+                    <input type="name" class="form-control" id="inputPassword3" placeholder="เบอร์โทรศัพท์"></input>
                   </div>
                </div>
                <br></br>

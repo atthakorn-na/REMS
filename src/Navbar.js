@@ -1,11 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Component } from 'react';
+import { Component,useContext  } from 'react';
 import vintage from './image/vintage-logo.png';
+import { AuthContext } from './components/Auth';
 import 'boxicons';
+import auth from './components/Auth';
 import './css/nav.css';
 
-class Navbar extends Component{
-    render(){
+const Navbar =()=>{
+    
+      const  currentUser  = useContext(AuthContext);
     return (
       <div>
       <head>
@@ -33,7 +36,7 @@ class Navbar extends Component{
               </a>
             </li>
             <li>
-              <a href='#'>
+              <a href='/chat'>
                 <i class='bx bx-chat'></i>
                 <span class='links_name'>กล่องข้อความ</span>
               </a>
@@ -62,12 +65,12 @@ class Navbar extends Component{
                   </div>
               </div>
             </div>
-            <i class='bx bx-log-out' id="log_out"></i>
+            <button onClick={() =>auth.Navbar}><i class='bx bx-log-out' id="log_out"></i></button>
           </div>
       </div>
       </div>
     );
-    }
+    
 }
 
 export default Navbar;
