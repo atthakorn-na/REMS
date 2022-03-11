@@ -382,7 +382,6 @@
             }
     ],
     "users": [
-      [
         {
           "id": 1,
           "fullName": "simon 9นิ้ว",
@@ -418,6 +417,6 @@
           "phoneNumber": "3231-962-7516",
           "email": "raymon.edwards@email.com"
         }
-      ]
+      
     ]
 }
