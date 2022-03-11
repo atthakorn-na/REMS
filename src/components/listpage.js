@@ -10,8 +10,21 @@ import Navbar from '../Navbar';
 import data from "./mock-data.json";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditableRow";
+import getList from "../services/getList";
 
 const Listpage = ()=>{
+    const [list, setList] = useState([]);
+    useEffect(() => {
+      let mounted = true;
+      getList()
+        .then(items => {
+          if(mounted) {
+            setList(items)
+          }
+        })
+      return () => mounted = false;
+    }, [])
+    
     const [contacts, setContacts] = useState(data);
     const [addFormData, setAddFormData] = useState({
         fullName: "",
