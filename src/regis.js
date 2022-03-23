@@ -64,8 +64,8 @@ const Regis= () =>{
                <br></br>
                <div class="form-group">
                  
-                <label for="exampleFormControlSelect1">วัน</label>
-                <select class="form-control-day" id="exampleFormControlSelect1">
+                <label for="FormControlSelect1">วัน</label>
+                <select class="form-control-day" id="FormControlSelect1">
                 <option>--</option>
                   <option>1</option> <option>2</option> <option>3</option>
                   <option>4</option> <option>5</option><option>6</option>
@@ -79,8 +79,8 @@ const Regis= () =>{
                   <option>28</option><option>29</option><option>30</option>
                   <option>31</option>
                 </select>
-                <label for="exampleFormControlSelect1">ㅤเดือน</label>
-                <select class="form-control-month" id="exampleFormControlSelect1">
+                <label for="FormControlSelect2">ㅤเดือน</label>
+                <select class="form-control-month" id="FormControlSelect2">
                   <option>--------</option>
                   <option>มกราคม</option>
                   <option>กุมภาพันธ์</option>
@@ -95,8 +95,8 @@ const Regis= () =>{
                   <option>พฤศจิกายน</option>
                   <option>ธันวาคม</option>
                 </select>
-                <label for="exampleFormControlSelect1">ㅤปีเกิด</label>
-                <select class="form-control-year" id="exampleFormControlSelect1">
+                <label for="FormControlSelect3">ㅤปีเกิด</label>
+                <select class="form-control-year" id="FormControlSelect3">
                 <option>----</option>
                   <option>1999</option>
                   <option>2000</option>
@@ -106,7 +106,13 @@ const Regis= () =>{
                   <option>2004</option>
                 </select>
               </div>
-              <br></br>
+              <label for="FormControlSelect4">ประเภทการสมัคร</label>
+                <select class="form-control-type" id="FormControlSelect4">
+                <option>----</option>
+                  <option>User</option>
+                  <option>Agent</option>
+                  <option>Owner</option>
+                </select>
                <div class="form-button">
                  <button type="submit" class="btn btn-primary e" onClick={"/home"} >สมัครสมาชิก</button>
               </div> 

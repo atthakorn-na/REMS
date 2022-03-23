@@ -48,7 +48,7 @@ const Navbar =()=>{
               </a>
             </li>
             <li>
-              <a href='#'>
+              <a href='/Profile'>
                 <i class='bx bx-user'></i>
                 <span class='links_name'>จัดการบัญชีผู้ใช้</span>
               </a>

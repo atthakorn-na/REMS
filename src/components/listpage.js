@@ -5,12 +5,11 @@ import { Modal } from 'react-bootstrap';
 import 'boxicons';
 import { nanoid } from "nanoid";
 import '../css/rawdata.css';
-import firebase from '../utils/firebase';
 import Navbar from '../Navbar';
 import data from "./mock-data.json";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditableRow";
-
+// import Scrollspy from 'react-scrollspy';
 const Listpage = ()=>{
     const [contacts, setContacts] = useState(data);
     const [addFormData, setAddFormData] = useState({
@@ -123,11 +122,12 @@ const Listpage = ()=>{
         return(
             <div>
                 <body>
+                  
                     <div class='list_content'>
                         <div className='list_head'>
-                        <h1>รายการห้องพัก</h1>
+                        <h3>ㅤรายการห้องพัก</h3>
 
-                        <div class="gap-2 d-md-flex justify-content-md-end  ">
+                        <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="gap-2 d-md-flex justify-content-md-end  ">
                             <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
                                 จัดการห้องพัก
                             </button>
@@ -181,17 +181,55 @@ const Listpage = ()=>{
                         </div>
                         </div>
 
-                        <div className='content_tablelist'>
+                  <div className='content_tablelist'>
                     <form >
                         <table>
                         <thead>
-                            <h3>ห้องพักว่าง</h3>
+                          <div className='head_con'>
+                            <h3>ห้องพักว่าง</h3></div>
                             <tr>
                             <th>ชื่อโครงการ</th>
                             <th>ที่อยู่</th>
-                            <th>เบอร์ติดต่อ</th>
-                            <th>Email</th>
-                            <th>Actions</th>
+                            <th>ค่าเช่า</th>
+                            <th>ประเภทห้อง</th>
+                            <th>ㅤㅤㅤㅤActions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {contacts.map((contact) => (
+                            <Fragment>
+                                {editContactId === contact.id ? (
+                                <EditableRow
+                                    editFormData={editFormData}
+                                    handleEditFormChange={handleEditFormChange}
+                                    handleCancelClick={handleCancelClick}
+                                />
+                                ) : (
+                                <ReadOnlyRow
+                                    contact={contact}
+                                    handleEditClick={handleEditClick}
+                                    handleDeleteClick={handleDeleteClick}
+                                />
+                                )}
+                            </Fragment>
+                            ))}
+                        </tbody>
+                        </table>
+                    </form>
+                    </div>
+
+                    <div className='content_tablelist_book'>
+                    <form >
+                        <table>
+                        <thead>
+                          <div className='head_con_book'>
+                            <h3>ห้องพักเช่า</h3></div>
+                            <tr>
+                            <th>ชื่อโครงการ</th>
+                            <th>ที่อยู่</th>
+                            <th>ค่าเช่า</th>
+                            <th>ประเภทห้อง</th>
+                            <th>ㅤㅤㅤㅤActions</th>
                             </tr>
                         </thead>
                         <tbody>
