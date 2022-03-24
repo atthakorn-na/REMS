@@ -42,9 +42,9 @@ const Navbar =()=>{
               </a>
             </li>
             <li>
-              <a href='#'>
+              <a href='/Rent'>
               <i class='bx bxs-book-open' ></i>
-                <span class='links_name'>อนุมัติการปล่อยเช่า</span>
+                <span class='links_name'>อนุมัติปล่อยเช่า</span>
               </a>
             </li>
             <li>

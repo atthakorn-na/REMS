@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Listpage from './components/listpage';
 import Chat from './components/Chat';
 import Profile from './components/Profile';
+import Rent from './components/Rent';
 function App () {
 
   
@@ -20,6 +21,7 @@ function App () {
     <Route path='/listpage' exact element={<Listpage/>}></Route>
     <Route path='/chat' exact element={<Chat/>}></Route>
     <Route path='/Profile' exact element={<Profile/>}></Route>
+    <Route path='/Rent' exact element= {<Rent/>}></Route>
     </Routes>
     </div>
  

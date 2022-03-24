@@ -10,7 +10,7 @@ class Home extends Component{
           <div> 
           <div className='home_content'>
             <div className='home_head'>
-          <h1>Dashboard</h1>
+          <h2>Dashboard</h2>
           </div>
           </div>
           <Navbar>

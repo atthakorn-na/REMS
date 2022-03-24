@@ -4,8 +4,32 @@ import {useState,useEffect,Component} from 'react';
 import 'boxicons';
 import '../css/profile.css';
 import Navbar from '../Navbar';
-class Profile extends Component{
-    render(){
+const Profile =()=>{
+    useEffect(()=>{
+        const inpFile = document.getElementById("inpFile");
+        const previewContainer =document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewDefaultText =  previewContainer.querySelector(".image-preview__default-text");
+    
+        inpFile.addEventListener("change",function(){
+            const file = this.files[0];
+
+            if(file){
+                const reader = new FileReader();
+
+                previewDefaultText.style.display ="none";
+                previewImage.style.display = "block";
+
+                reader.addEventListener("load",function(){
+                 previewImage.setAttribute("src",this.result);
+                });
+                reader.readAsDataURL(file);
+            }
+        });
+    },[]);
+
+
+    
         return(
           <div> 
           <div className='home_content'>
@@ -17,33 +41,11 @@ class Profile extends Component{
                 
                 <div class="my-4">
                     <form>
-                        <div class="row mt-5 align-items-center">
-                            <div class="col-md-3 text-center mb-5">
-                            <div class="img-thumbnail img-circle">
-                            <div  type="file">
-                            <label for="file-input">
-                                    <span className='upload'>Upload</span>  
-                                      </label>
-                                
-
-
-
-                            </div>
-                            </div>
-                                      
-                    </div>
-                    <div class="col">
-                        <div class="row align-items-center">
-                            <div class="col-md-7">
-                                <h4 class="mb-1"> </h4>
-                                   <div class="image-upload">
-                                    <input id="file-input" type="file"/>
-                                </div>
-
-                            </div>
+                        <input type="file" name="inpFile" id="inpFile"></input>
+                        <div class="image-preview" id="imagePreview">
+                            <img src='' alt='Image Preview' className='image-preview__image'></img>
+                            <span className='image-preview__default-text'>Upload Image</span>
                         </div>
-                    </div>
-                </div>
                 <hr class="my-4" />
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -60,10 +62,6 @@ class Profile extends Component{
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="inputPassword4">Old Password</label>
-                            <input type="password" class="form-control" id="inputPassword5" />
-                        </div>
-                        <div class="form-group">
                             <label for="inputPassword5">New Password</label>
                             <input type="password" class="form-control" id="inputPassword5" />
                         </div>
@@ -72,10 +70,7 @@ class Profile extends Component{
                             <input type="password" class="form-control" id="inputPassword6" />
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <p class="mb-2">Password requirements</p>
-                        <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
-                    </div>
+
                 </div>
                 <button type="submit" class="btn btn-primary">Save Change</button>
                         </form>
@@ -92,7 +87,7 @@ class Profile extends Component{
           </Navbar>
           </div>
         );
-    }
+    
     
 }
 export default Profile;

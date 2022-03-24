@@ -18,7 +18,7 @@ const Chat = ()=>{
             <body>
                 <div class='list_content'>
                     <div className='list_head'>
-                    <h1>กล่องข้อความ</h1>
+                    <h2>กล่องข้อความ</h2>
 
                     <div class="gap-2 d-md-flex justify-content-md-end  ">
                         <a href="/regis" class="btn btn-primary custombtn "   type="button">ติดต่อเพิ่มเติม</a>
