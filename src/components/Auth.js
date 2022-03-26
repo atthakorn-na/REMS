@@ -1,31 +1,101 @@
-// import React, { useState, useEffect } from 'react';
-// import firebase from 'firebase/compat';
-// import { HTTP } from '../axios/axios'
+import React, { useState, useEffect } from 'react';
+import { HTTP } from '../axios/axios'
+import { useNavigate } from "react-router-dom";
+import { ServiceEndpoint } from '../types/Services'
 
+export const AuthContext = React.createContext(null);
 
-// export const AuthContext = React.createContext();
+export const AuthProvider = ({ children }) => {
+    const [currentUser, setCurrentUser] = useState(null);
+    const [rooms, setRooms] = useState()
+    let navigate = useNavigate();
+    
+    if(!AuthContext){
+      throw new Error('useAuth must be used inside children of AuthProvider only')
+    }
 
-// export const AuthProvider = ({ children }) => {
-//     const [loading, setLoading] = useState(true);
-//     const [currentUser, setCurrentUser] = useState(null);
+    async function loginAuth(loginUser) {
+      try {
+        const requestOptions = {
+          method: 'POST',
+          url: ServiceEndpoint.login,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(loginUser)
+        };
+        await HTTP(requestOptions)
+          .then(response => {
+            if (response.data) {
+              setCurrentUser(response.data);
+              getAllRoom(loginUser);
+              navigate("../home", { replace: true })  
+            } return false
+          })
+      } catch(error) {
+        alert(error);
+        }
+    }  
+    
+    async function logoutAuth(loginUser) {
+      try {
+        const requestOptions = {
+          method: 'POST',
+          url: ServiceEndpoint.logout,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(loginUser)
+        };
+        await HTTP(requestOptions)
+          .then(() => {
+            navigate("../", { replace: true });
+            setCurrentUser(null);
+          })
+      } catch(error) {
+        alert(error)
+      }
+    }
 
-//     useEffect(() => {
+    async function registration(regisUser) {
+      try {
+        const requestOptions = {
+          method: 'POST',
+          url: ServiceEndpoint.registration,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(regisUser)
+        };
+        await HTTP(requestOptions)
+          .then((response) => {
+            setCurrentUser(response.data);
+            getAllRoom(regisUser);
+            navigate("../home", { replace: true });
+          })
+          .finally(() => alert("สมัครสมาชิกเรียบร้อย"))
+      } catch(error) {
+        alert(error);
+      }
+    }
 
-//         firebase.auth().onAuthStateChanged((user) => {
-//             setCurrentUser(user);
-//             setLoading(false);
-//         })
+    async function getAllRoom(loginUser) {
+      try {
+        const requestOptions = {
+          method: 'GET',
+          url: ServiceEndpoint.getAllRoom,
+          headers: { 'Content-Type': 'application/json' },
+          params: {email: loginUser.email}
+        };
+        await HTTP(requestOptions)
+          .then(response => {
+            if (response.data) {
+              setRooms(response.data);
+            }
+          })
+      } catch(error) {
+        alert(error);
+        }
+    }
 
-//     }, [])
-
-//     if (loading) {
-//         return <p>Loading...</p>;
-//     }
-
-//     return (
-//         <AuthContext.Provider value={{currentUser}}>
-//             {children}
-//         </AuthContext.Provider>
-//     )
-// }
-// export default AuthContext;
+    return (
+        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration}}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+export default AuthContext;

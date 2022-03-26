@@ -1,43 +1,49 @@
-import {useState,useEffect,Component,Fragment } from 'react';
+import {useState, useEffect, useContext, Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.min.js";
 import { Modal } from 'react-bootstrap';
 import 'boxicons';
 import { nanoid } from "nanoid";
 import '../css/rawdata.css';
-import firebase from '../utils/firebase';
+import { AuthProvider } from './Auth';
 import Navbar from '../Navbar';
 import data from "./mock-data.json";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditableRow";
-import { getList } from "../services/getList";
+import { AuthContext } from './Auth'
+// import { getList } from "../services/getList";
 
 const Listpage = ()=>{
     const [list, setList] = useState([]);
-    useEffect(() => {
-      let mounted = true;
-      getList()
-        .then(items => {
-          if(mounted) {
-            setList(items)
-          }
-        })
-      return () => mounted = false;
-    }, [])
+    const { currentUser, rooms } = useContext(AuthContext);
+    console.log(rooms)
+    // useEffect(() => {
+    //   let mounted = true;
+    //   getList()
+    //     .then(items => {
+    //       if(mounted) {
+    //         setList(items)
+    //       }
+    //     })
+    //   return () => mounted = false;
+    // }, [])
 
     const [contacts, setContacts] = useState(data);
+
     const [addFormData, setAddFormData] = useState({
         fullName: "",
         address: "",
         phoneNumber: "",
         email: "",
       });
+
     const [editFormData, setEditFormData] = useState({
         fullName: "",
         address: "",
         phoneNumber: "",
         email: "",
       });
+
     const [editContactId, setEditContactId] = useState(null);
 
     //add
@@ -66,6 +72,7 @@ const Listpage = ()=>{
         const newContacts = [...contacts, newContact];
         setContacts(newContacts);
       };
+
     //edit
     const handleEditFormChange = (event) => {
         event.preventDefault();
@@ -78,6 +85,7 @@ const Listpage = ()=>{
     
         setEditFormData(newFormData);
       };
+
     const handleEditFormSubmit = (event) => {
         event.preventDefault();
     
@@ -198,19 +206,26 @@ const Listpage = ()=>{
                     <form >
                         <table>
                         <thead>
+                        {/* <td>{contact.status}</td>
+                            <td>{contact.ownerEmail}</td>
+                            <td>{contact.agentEmail}</td>
+                            <td>{contact.project}</td>
+                            <td>{contact.location}</td>
+                            <td>{contact.fee}</td> */}
                             <h3>ห้องพักว่าง</h3>
                             <tr>
-                            <th>ชื่อโครงการ</th>
-                            <th>ที่อยู่</th>
-                            <th>เบอร์ติดต่อ</th>
-                            <th>Email</th>
-                            <th>Actions</th>
+                            <th>Status</th>
+                            <th>เจ้าของ</th>
+                            <th>เอเจ้น</th>
+                            <th>โครงการ</th>
+                            <th>เขต</th>
+                            <th>ราคา</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {contacts.map((contact) => (
+                            {rooms.map((room) => (
                             <Fragment>
-                                {editContactId === contact.id ? (
+                                {editContactId === room.id ? (
                                 <EditableRow
                                     editFormData={editFormData}
                                     handleEditFormChange={handleEditFormChange}
@@ -218,7 +233,7 @@ const Listpage = ()=>{
                                 />
                                 ) : (
                                 <ReadOnlyRow
-                                    contact={contact}
+                                    contact={room}
                                     handleEditClick={handleEditClick}
                                     handleDeleteClick={handleDeleteClick}
                                 />
@@ -241,9 +256,7 @@ const Listpage = ()=>{
                  
                 </div>
           <Navbar>
-          
           </Navbar>
-          
           </div>
         );
     
