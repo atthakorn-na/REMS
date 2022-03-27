@@ -16,7 +16,7 @@ import { AuthContext } from './Auth'
 const Listpage = ()=>{
     const [list, setList] = useState([]);
     const { currentUser, rooms } = useContext(AuthContext);
-    console.log(rooms)
+    
     // useEffect(() => {
     //   let mounted = true;
     //   getList()

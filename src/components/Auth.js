@@ -27,8 +27,7 @@ export const AuthProvider = ({ children }) => {
             if (response.data) {
               setCurrentUser(response.data);
               getAllRoom(loginUser);
-              navigate("../home", { replace: true })  
-            } return false
+            }
           })
       } catch(error) {
         alert(error);
@@ -65,7 +64,6 @@ export const AuthProvider = ({ children }) => {
           .then((response) => {
             setCurrentUser(response.data);
             getAllRoom(regisUser);
-            navigate("../home", { replace: true });
           })
           .finally(() => alert("สมัครสมาชิกเรียบร้อย"))
       } catch(error) {
@@ -85,6 +83,7 @@ export const AuthProvider = ({ children }) => {
           .then(response => {
             if (response.data) {
               setRooms(response.data);
+              navigate("../home", { replace: true })
             }
           })
       } catch(error) {
