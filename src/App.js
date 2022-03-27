@@ -17,6 +17,7 @@ function App () {
         <Route  path='/Home'exact element={<Home/>}></Route>
         <Route path='/listpage' exact element={<Listpage/>}></Route>
         <Route path='/chat' exact element={<Chat/>}></Route>
+        <Route path='*' element={<Login/>}></Route>
       </Routes>
   );
   

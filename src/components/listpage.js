@@ -11,22 +11,10 @@ import data from "./mock-data.json";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditableRow";
 import { AuthContext } from './Auth'
-// import { getList } from "../services/getList";
 
 const Listpage = ()=>{
     const [list, setList] = useState([]);
     const { currentUser, rooms } = useContext(AuthContext);
-    
-    // useEffect(() => {
-    //   let mounted = true;
-    //   getList()
-    //     .then(items => {
-    //       if(mounted) {
-    //         setList(items)
-    //       }
-    //     })
-    //   return () => mounted = false;
-    // }, [])
 
     const [contacts, setContacts] = useState(data);
 
@@ -141,127 +129,109 @@ const Listpage = ()=>{
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
         
-        return(
-            <div>
-                <body>
-                    <div class='list_content'>
-                        <div className='list_head'>
-                        <h1>รายการห้องพัก</h1>
+      return(
+        <>
+          <body>
+              <div class='list_content'>
+                <div className='list_head'>
+                  <h1>รายการห้องพัก</h1>
+                  <div class="gap-2 d-md-flex justify-content-md-end  ">
+                      <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
+                          จัดการห้องพัก
+                      </button>
+                      <Modal show={show} onHide={handleClose} animation={false}>
+                          <Modal.Header closeButton>
+                          <Modal.Title>จัดการห้องพัก</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                              <form onSubmit={handleAddFormSubmit}>
+                                  <input
+                                  type="text"
+                                  name="fullName"
+                                  required="required"
+                                  placeholder="ชื่อโครงการ..."
+                                  onChange={handleAddFormChange}
+                                  />
+                                  <input
+                                  type="text"
+                                  name="address"
+                                  required="required"
+                                  placeholder="ที่อยู่โครงการ..."
+                                  onChange={handleAddFormChange}
+                                  />
+                                  <input
+                                  type="text"
+                                  name="phoneNumber"
+                                  required="required"
+                                  placeholder="ประเภทห้อง..."
+                                  onChange={handleAddFormChange}
+                                  />
+                                  <input
+                                  type="email"
+                                  name="email"
+                                  required="required"
+                                  placeholder="ค่าเช่า..."
+                                  onChange={handleAddFormChange}
+                                  />
+                                  <button type="submit">Add</button>
+                              </form>
+                          </Modal.Body>
+                          <Modal.Footer>
+                          <button variant="secondary"class="btn btn-primary modalbtn" onClick={handleClose}>
+                              บันทึก
+                          </button>
+                          <button variant="primary" class="btn btn-primary modalbtn"onClick={handleClose}>
+                          ยกเลิก
+                          </button>
+                          </Modal.Footer>
+                      </Modal>
+                  </div>
+                  </div>
 
-                        <div class="gap-2 d-md-flex justify-content-md-end  ">
-                            <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
-                                จัดการห้องพัก
-                            </button>
-
-                            <Modal show={show} onHide={handleClose} animation={false}>
-                                <Modal.Header closeButton>
-                                <Modal.Title>จัดการห้องพัก</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <form onSubmit={handleAddFormSubmit}>
-                                        <input
-                                        type="text"
-                                        name="fullName"
-                                        required="required"
-                                        placeholder="ชื่อโครงการ..."
-                                        onChange={handleAddFormChange}
-                                        />
-                                        <input
-                                        type="text"
-                                        name="address"
-                                        required="required"
-                                        placeholder="ที่อยู่โครงการ..."
-                                        onChange={handleAddFormChange}
-                                        />
-                                        <input
-                                        type="text"
-                                        name="phoneNumber"
-                                        required="required"
-                                        placeholder="ประเภทห้อง..."
-                                        onChange={handleAddFormChange}
-                                        />
-                                        <input
-                                        type="email"
-                                        name="email"
-                                        required="required"
-                                        placeholder="ค่าเช่า..."
-                                        onChange={handleAddFormChange}
-                                        />
-                                        <button type="submit">Add</button>
-                                    </form>
-                                </Modal.Body>
-                                <Modal.Footer>
-                                <button variant="secondary"class="btn btn-primary modalbtn" onClick={handleClose}>
-                                    บันทึก
-                                </button>
-                                <button variant="primary" class="btn btn-primary modalbtn"onClick={handleClose}>
-                                ยกเลิก
-                                </button>
-                                </Modal.Footer>
-                            </Modal>
-                        </div>
-                        </div>
-
-                        <div className='content_tablelist'>
-                    <form >
-                        <table>
-                        <thead>
-                        {/* <td>{contact.status}</td>
-                            <td>{contact.ownerEmail}</td>
-                            <td>{contact.agentEmail}</td>
-                            <td>{contact.project}</td>
-                            <td>{contact.location}</td>
-                            <td>{contact.fee}</td> */}
-                            <h3>ห้องพักว่าง</h3>
-                            <tr>
-                            <th>Status</th>
-                            <th>เจ้าของ</th>
-                            <th>เอเจ้น</th>
-                            <th>โครงการ</th>
-                            <th>เขต</th>
-                            <th>ราคา</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {rooms.map((room) => (
-                            <Fragment>
-                                {editContactId === room.id ? (
-                                <EditableRow
-                                    editFormData={editFormData}
-                                    handleEditFormChange={handleEditFormChange}
-                                    handleCancelClick={handleCancelClick}
-                                />
-                                ) : (
-                                <ReadOnlyRow
-                                    contact={room}
-                                    handleEditClick={handleEditClick}
-                                    handleDeleteClick={handleDeleteClick}
-                                />
-                                )}
-                            </Fragment>
-                            ))}
-                        </tbody>
-                        </table>
-                    </form>
-                        
-
-                    </div>
-                    </div>
-                    
-
-
-                </body>
-                
-                <div>  
-                 
-                </div>
-          <Navbar>
-          </Navbar>
+                  <div className='content_tablelist'>
+              <form >
+                  <table>
+                  <thead>
+                      <h3>ห้องพักว่าง</h3>
+                      <tr>
+                      <th>Status</th>
+                      <th>เจ้าของ</th>
+                      <th>เอเจ้น</th>
+                      <th>โครงการ</th>
+                      <th>เขต</th>
+                      <th>ราคา</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {rooms.map((room) => (
+                      <>
+                          {editContactId === room.id ? (
+                          <EditableRow
+                              editFormData={editFormData}
+                              handleEditFormChange={handleEditFormChange}
+                              handleCancelClick={handleCancelClick}
+                          />
+                          ) : (
+                          <ReadOnlyRow
+                              contact={room}
+                              handleEditClick={handleEditClick}
+                              handleDeleteClick={handleDeleteClick}
+                          />
+                          )}
+                      </>
+                      ))}
+                  </tbody>
+                  </table>
+              </form>
+              </div>
+              </div>
+          </body>
+          <div>  
           </div>
-        );
+      <Navbar>
+      </Navbar>
+    </>
+  );  
     
-    
-
-
 }
 export default Listpage;
