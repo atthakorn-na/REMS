@@ -44,13 +44,13 @@ const Navbar =()=>{
             </a>
           </li>
           <li>
-            <a href='#'>
+            <a onClick={() => navigate("../rent", { replace: true })}>
             <i class='bx bxs-book-open' ></i>
               <span class='links_name'>อนุมัติการปล่อยเช่า</span>
             </a>
           </li>
           <li>
-            <a href='#'>
+            <a onClick={() => navigate("../profile", { replace: true })}>
               <i class='bx bx-user'></i>
               <span class='links_name'>จัดการบัญชีผู้ใช้</span>
             </a>

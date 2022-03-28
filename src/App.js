@@ -7,6 +7,8 @@ import Home from './components/Home';
 import Listpage from './components/listpage';
 import Chat from './components/Chat';
 import AuthContext, { AuthProvider } from './components/Auth'
+import Profile from './components/Profile';
+import Rent from './components/rent';
 
 function App () {
   
@@ -18,6 +20,8 @@ function App () {
         <Route path='/listpage' exact element={<Listpage/>}></Route>
         <Route path='/chat' exact element={<Chat/>}></Route>
         <Route path='*' element={<Login/>}></Route>
+        <Route path='profile' element={<Profile/>}></Route>
+        <Route path='rent' element={<Rent/>}></Route>
       </Routes>
   );
   
