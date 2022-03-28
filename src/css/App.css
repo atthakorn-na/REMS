@@ -90,6 +90,11 @@ p{
   padding : 0;
     margin : 0;
     line-height : 10px;
-    
-     
+  
+}
+.text-error{
+  margin-top: 10px;
+  color: tomato;
+  margin-right: 14px;
+  font-size: 14.4px;
 }

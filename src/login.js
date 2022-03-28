@@ -45,7 +45,7 @@ const Login = ()=> {
             <div className="form-password-login">
               <div className="form-pass-real">
                 <input type="password" name="password" className="form-control" id="inputPassword3" placeholder="รหัสผ่าน" onChange={handleChange}></input>
-                {wrongUser ? <label form='password'>รหัสผิดจ้า</label> : null}
+                {wrongUser ? <label className='text-error' form='password'>Email address or password is either incorrect or not regitered with REMS.</label> : null}
               </div>
             </div>
             <br></br>

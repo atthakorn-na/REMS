@@ -27,7 +27,7 @@ const Home = () => {
         <div className='home_content'>
           <div className='home_head'>
             <h1>Dashboard</h1>
-            <h5>Welcome Khun {currentUser?.firstName} {currentUser?.lastName}</h5>
+            <h5>Welcome {currentUser?.firstName} {currentUser?.lastName}</h5>
             {rooms.length > 0 ? (
             <>
               <h6>Total Room: {rooms.length} rooms</h6>
