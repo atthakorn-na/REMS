@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../css/rawdata.css';
 const EditableRow = ({
   handleChange, 
   editData, 
@@ -7,9 +7,11 @@ const EditableRow = ({
   handleCancel
 }) => {
   return (
-    <tr id={editData.roomId}>
+  
+    <tr id={editData.roomId} >
+      <div className="edit-table">
       <td>
-        <input
+        <input className="ed1"
           type="text"
           required="required"
           placeholder="Status"
@@ -19,7 +21,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input
+        <input className="ed2"
           type="text"
           required="required"
           placeholder="Owner Email"
@@ -28,8 +30,8 @@ const EditableRow = ({
           onChange={handleChange}
         />
       </td>
-      <td>
-        <input
+      <td> 
+        <input className="ed3"
           type="text"
           required="required"
           placeholder="Agency Email"
@@ -39,7 +41,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input
+        <input className="ed4"
           type="text"
           required="required"
           placeholder="Project Name"
@@ -49,7 +51,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input
+        <textarea className="ed5"
           type="text"
           required="required"
           placeholder="Location"
@@ -59,7 +61,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input
+        <input className="ed6"
           type="text"
           required="required"
           placeholder="Rental Fee"
@@ -68,9 +70,11 @@ const EditableRow = ({
           onChange={handleChange}
         />
       </td>
-      <td><button onClick={(event) => handleSubmit(event)}>Save</button></td>
-      <td><button onClick={() => handleCancel()}>X</button></td>  
+      <td><button class="btn btn-primary modalbtn " onClick={(event) => handleSubmit(event)}>Save</button></td>
+      <td><button class="btn btn-danger closebtne" onClick={() => handleCancel()}>X</button></td>  
+      </div>
     </tr>
+   
   );
 };
 

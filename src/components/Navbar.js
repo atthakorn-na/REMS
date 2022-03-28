@@ -37,12 +37,6 @@ const Navbar =()=>{
               <span class='links_name'>รายการห้องพัก</span>
             </a>
           </li>
-          {/* <li>
-            <a onClick={() => navigate("../chat", { replace: true })}>
-              <i class='bx bx-chat'></i>
-              <span class='links_name'>กล่องข้อความ</span>
-            </a>
-          </li> */}
           <li>
             <a onClick={() => navigate("../rent", { replace: true })}>
             <i class='bx bxs-book-open' ></i>

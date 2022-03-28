@@ -62,117 +62,6 @@ const ListPage = () => {
     setAllList((prev) => prev.filter((item) => item.roomId !== itemToRemove));               
   };
 
-    // OLDER VERSION
-
-    // const [contacts, setContacts] = useState(data);
-
-    // const [addFormData, setAddFormData] = useState({
-    //     fullName: "",
-    //     address: "",
-    //     phoneNumber: "",
-    //     email: "",
-    //   });
-
-    // const [editFormData, setEditFormData] = useState({
-    //     fullName: "",
-    //     address: "",
-    //     phoneNumber: "",
-    //     email: "",
-    //   });
-
-    // const [editContactId, setEditContactId] = useState(null);
-
-    // //add
-    // const handleAddFormChange = (event) => {
-    //     event.preventDefault();
-        
-    //     const fieldName = event.target.getAttribute("name");
-    //     const fieldValue = event.target.value;
-        
-    //     const newFormData = { ...addFormData };
-    //     newFormData[fieldName] = fieldValue;
-        
-    //     setAddFormData(newFormData);
-    // };
-    // const handleAddFormSubmit = (event) => {
-    //     event.preventDefault();
-    
-    //     const newContact = {
-    //       id: nanoid(),
-    //       fullName: addFormData.fullName,
-    //       address: addFormData.address,
-    //       phoneNumber: addFormData.phoneNumber,
-    //       email: addFormData.email,
-    //     };
-    
-    //     const newContacts = [...contacts, newContact];
-    //     setContacts(newContacts);
-    //   };
-
-    // //edit
-    // const handleEditFormChange = (event) => {
-    //     event.preventDefault();
-    
-    //     const fieldName = event.target.getAttribute("name");
-    //     const fieldValue = event.target.value;
-    
-    //     const newFormData = { ...editFormData };
-    //     newFormData[fieldName] = fieldValue;
-    
-    //     setEditFormData(newFormData);
-    //   };
-
-    // const handleEditFormSubmit = (event) => {
-    //     event.preventDefault();
-    
-    //     const editedContact = {
-    //       id: editContactId,
-    //       fullName: editFormData.fullName,
-    //       address: editFormData.address,
-    //       phoneNumber: editFormData.phoneNumber,
-    //       email: editFormData.email,
-    //     };
-    
-    //     const newContacts = [...contacts];
-    
-    //     const index = contacts.findIndex((contact) => contact.id === editContactId);
-    
-    //     newContacts[index] = editedContact;
-    
-    //     setContacts(newContacts);
-    //     setEditContactId(null);
-    //   };
-    
-      // const handleEditClick = (event, contact) => {
-      //   event.preventDefault();
-      //   setEditContactId(contact.id);
-    
-      //   const formValues = {
-      //     fullName: contact.fullName,
-      //     address: contact.address,
-      //     phoneNumber: contact.phoneNumber,
-      //     email: contact.email,
-      //   };
-    
-      //   setEditFormData(formValues);
-      // };
-    
-    // const handleCancelClick = () => {
-    //     setEditContactId(null);
-    //   };
-    
-    // const handleDeleteClick = (contactId) => {
-    //     const newContacts = [...contacts];
-    
-    //     const index = contacts.findIndex((contact) => contact.id === contactId);
-    
-    //     newContacts.splice(index, 1);
-    
-    //     setContacts(newContacts);
-    //   };
-
-
-    //modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -243,13 +132,12 @@ const ListPage = () => {
               <form >
                   <table>
                     <thead>
-                      <h3>ห้องพักว่าง</h3>
                       <tr>
-                      <th>Status</th>
-                      <th>เจ้าของ</th>
+                      <th >Status</th>
+                      <th >เจ้าของ</th>
                       <th>เอเจ้น</th>
                       <th>โครงการ</th>
-                      <th>เขต</th>
+                      <th >เขต</th>
                       <th>ราคา</th>
                       </tr>
                     </thead>
@@ -271,8 +159,7 @@ const ListPage = () => {
       </Navbar>
     </>
     : <h1>ROOM NOT FOUND !!</h1>}
-      <Navbar>
-      </Navbar>
+
     </>
   );  
     
