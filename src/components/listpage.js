@@ -6,7 +6,7 @@ import 'boxicons';
 import { nanoid } from "nanoid";
 import '../css/rawdata.css';
 
-import { AuthProvider } from './Auth';
+import EditableRow from './EditableRow';
 import Navbar from '../Navbar';
 import data from "./mock-data.json";
 import ReadOnlyRow from "../components/ReadOnlyRow";
