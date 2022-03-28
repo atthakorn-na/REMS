@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/regis.css';
-import HandleChange from './containers/HandleChange'
-import { AuthContext } from './components/Auth'
+import '../css/regis.css';
+import HandleChange from '../services/HandleChange'
+import { AuthContext } from '../services/Auth'
 import { useNavigate } from "react-router-dom";
 
 const Regis = () => {

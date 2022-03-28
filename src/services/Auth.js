@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HTTP } from '../axios/axios'
+import { HTTP } from './axios'
 import { useNavigate } from "react-router-dom";
 import { ServiceEndpoint } from '../types/Services'
 
