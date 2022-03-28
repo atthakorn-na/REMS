@@ -37,7 +37,6 @@
 //             </div>
 //       <Navbar>
 //       </Navbar>
-      
 //       </div>
 //     );
 

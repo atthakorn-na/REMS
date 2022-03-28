@@ -4,6 +4,7 @@ import React,{useContext , useState, useEffect} from 'react';
 import 'boxicons';
 import '../css/rawdata.css';
 import Navbar from '../Navbar';
+
 import { AuthContext } from './Auth'
 
 const Home = () => {

@@ -24,6 +24,7 @@ const Navbar =()=>{
           </div>
         
         </div>
+
         <ul class='nav_list'>
           <li>
             <a onClick={() => navigate("../home", { replace: true })}>
@@ -64,6 +65,7 @@ const Navbar =()=>{
               <div class='name_job'>
                 <div class='name'>{currentUser?.firstName} {currentUser?.lastName}</div>
                 <div class='job'>Owner</div>
+
               </div>
             </div>
           </div>

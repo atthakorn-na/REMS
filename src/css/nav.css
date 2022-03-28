@@ -13,6 +13,9 @@
     width: 240px;
     background: white;
     padding: 6px 14px;
+    border-style:groove;
+             border-width: 5px;
+    
 }
 .sidebar .logo_content .logo{
     color:#000;
@@ -20,6 +23,7 @@
     height: 50px;
     width: 100%;
     align-items: center;
+    
 }
 .logo_content .logo i{
     font-size: 28px;
@@ -43,6 +47,7 @@
 }
 .sidebar ul{
     margin-top: 20px;
+    
 }
 .sidebar ul li{
     position: relative;
@@ -114,7 +119,7 @@
     left: 88%;
     bottom: 5px;
     transform: translateX(-50%);
-    min-width: 50px;
+    min-width: 250px;
     line-height: 50px;
-    font-size: 50px;
+    font-size: 250px;
 }
