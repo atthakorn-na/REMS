@@ -1,11 +1,11 @@
-import {useState,useEffect,Component} from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import {Component} from 'react';
 
 import 'boxicons';
 import '../css/profile.css';
-import Navbar from '../Navbar';
+import Navbar from '../components/Navbar';
 
 class Profile extends Component{
+    
     render(){
         return(
           <div> 

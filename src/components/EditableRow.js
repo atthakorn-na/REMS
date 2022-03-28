@@ -1,58 +1,85 @@
 import React from "react";
 
 const EditableRow = ({
-  editFormData,
-  handleEditFormChange,
-  handleCancelClick,
+  handleChange, 
+  editData, 
+  handleSubmit, 
+  handleCancel
 }) => {
   return (
-    <tr>
+    <tr id={editData.roomId}>
       <td>
         <input
           type="text"
           required="required"
-          placeholder="Enter a name..."
-          name="fullName"
-          value={editFormData.fullName}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter an address..."
-          name="address"
-          value={editFormData.address}
-          onChange={handleEditFormChange}
-        ></input>
+          placeholder="Status"
+          name="status"
+          value={editData.status}
+          onChange={handleChange}
+        />
       </td>
       <td>
         <input
           type="text"
           required="required"
-          placeholder="Enter a phone number..."
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
-          onChange={handleEditFormChange}
-        ></input>
+          placeholder="Owner Email"
+          name="ownerEmail"
+          value={editData.ownerEmail}
+          onChange={handleChange}
+        />
       </td>
       <td>
         <input
-          type="email"
+          type="text"
           required="required"
-          placeholder="Enter an email..."
-          name="email"
-          value={editFormData.email}
-          onChange={handleEditFormChange}
-        ></input>
+          placeholder="Agency Email"
+          name="agentEmail"
+          value={editData.agentEmail}
+          onChange={handleChange}
+        />
       </td>
       <td>
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleCancelClick}>
-          Cancel
-        </button>
+        <input
+          type="text"
+          required="required"
+          placeholder="Agency Email"
+          name="agentEmail"
+          value={editData.agentEmail}
+          onChange={handleChange}
+        />
       </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          placeholder="Project Name"
+          name="project"
+          value={editData.project}
+          onChange={handleChange}
+        />
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          placeholder="Location"
+          name="location"
+          value={editData.location}
+          onChange={handleChange}
+        />
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          placeholder="Rental Fee"
+          name="fee"
+          value={editData.fee}
+          onChange={handleChange}
+        />
+      </td>
+      <td><button onClick={(event) => handleSubmit(event)}>Save</button></td>
+      <td><button onClick={() => handleCancel()}>X</button></td>  
     </tr>
   );
 };

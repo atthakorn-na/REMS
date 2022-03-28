@@ -1,16 +1,11 @@
-import {useState,useEffect,Component} from 'react';
+import React from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'boxicons';
 import '../css/rent.css';
-import Navbar from '../Navbar';
-const Rent=()=>{
-  useEffect(()=>{
+import Navbar from '../components/Navbar';
 
-
-
-
-  },[])
+const Rent = () => {
 
         return(
           <div> 

@@ -1,10 +1,9 @@
-import React,{ useContext , useEffect, useState } from 'react';
-import './css/App.css';
-import vintage from './image/vintage-logo.png';
+import React,{ useContext, useState } from 'react';
+import '../css/App.css';
+import vintage from '../image/vintage-logo.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import HandleChange from './containers/HandleChange'
-import { AuthContext } from './components/Auth'
-import { Navigate, useNavigate } from "react-router-dom";
+import HandleChange from '../services/HandleChange'
+import { AuthContext } from '../services/Auth';
 
 const Login = ()=> {
   const [loginUser, setLoginUser] = useState();

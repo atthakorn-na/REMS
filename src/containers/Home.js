@@ -1,11 +1,10 @@
-import React,{useContext , useState, useEffect} from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useContext } from 'react';
 
 import 'boxicons';
 import '../css/rawdata.css';
-import Navbar from '../Navbar';
+import Navbar from '../components/Navbar';
 
-import { AuthContext } from './Auth'
+import { AuthContext } from '../services/Auth'
 
 const Home = () => {
   const { currentUser, rooms } = useContext(AuthContext);

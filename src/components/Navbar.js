@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useContext} from 'react';
-import vintage from './image/vintage-logo.png';
-import { AuthContext } from './components/Auth';
+import { useContext } from 'react';
+import { AuthContext } from '../services/Auth';
 import 'boxicons';
-import './css/nav.css';
+import '../css/nav.css';
 import { useNavigate } from "react-router-dom";
 
 const Navbar =()=>{
