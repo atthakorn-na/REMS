@@ -17,9 +17,6 @@ const Home = () => {
     }
     avgPrice = roomValue/rooms.length;
   }
-  
-
-  
 
   return (
       <div> 
