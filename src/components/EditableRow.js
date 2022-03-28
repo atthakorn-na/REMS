@@ -42,16 +42,6 @@ const EditableRow = ({
         <input
           type="text"
           required="required"
-          placeholder="Agency Email"
-          name="agentEmail"
-          value={editData.agentEmail}
-          onChange={handleChange}
-        />
-      </td>
-      <td>
-        <input
-          type="text"
-          required="required"
           placeholder="Project Name"
           name="project"
           value={editData.project}
