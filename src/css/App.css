@@ -98,3 +98,8 @@ p{
   margin-right: 14px;
   font-size: 14.4px;
 }
+.btn.btn-primary.l{
+  width: 300px;
+  margin-left: 45px;
+  text-align: center;
+}

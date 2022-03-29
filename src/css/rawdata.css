@@ -45,7 +45,9 @@ body{
    margin-bottom: 20px;
   
 }
-
+.dohome{
+  margin-top: 30px;
+}
 .custombtn{
     width: 125px;
     height: 43px;
@@ -128,4 +130,87 @@ body{
   width: 100%;
   margin-top: 30px;
   margin-left: 30px;
+}
+.total-room-text{
+  width: 225px;
+  height: 100px;
+  margin-top: 60px;
+  background-color: white;
+  border-radius: 6px;
+}
+.bx.bx-heart-circle{
+  float: left;
+  font-size: 50px;
+  margin-top: 25px;
+  color: #5B93FF;
+  margin-left: 20px;
+}
+.texth-1{
+  float: left;
+  margin-left:29px ;
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.texth-11{
+  float: left;
+  margin-left:-15px ;
+  margin-top: 55px;
+}
+.total-room-value{
+  width: 225px;
+  height: 100px;
+  margin-top: -100px;
+  background-color: white;
+  border-radius: 8px;
+  float: left;
+  margin-left: 350px;
+}
+.bx.bx-wallet-alt{
+  float: left;
+  font-size: 50px;
+  margin-top: 25px;
+  color: #FFC327;
+  margin-left: 20px;
+}
+.texth-2{
+  float: left;
+  margin-left:29px ;
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.texth-22{
+  float: left;
+  margin-left:25px ;
+  margin-top: -5px;
+}
+
+.total-room-average{
+  width: 225px;
+  height: 100px;
+  margin-top: -100px;
+  background-color: white;
+  border-radius: 8px;
+  float: left;
+  margin-left: 700px;
+}
+.bx.bx-scatter-chart{
+  float: left;
+  font-size: 50px;
+  margin-top: 25px;
+  color: #FF8F6B;
+  margin-left: 20px;
+}
+.texth-3{
+  float: left;
+  margin-left:29px ;
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.texth-33{
+  float: left;
+  margin-left:25px ;
+  margin-top: -5px;
 }

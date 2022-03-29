@@ -23,12 +23,24 @@ const Home = () => {
         <div className='home_content'>
           <div className='home_head'>
             <h1>Dashboard</h1>
-            <h5>Welcome {currentUser?.firstName} {currentUser?.lastName}</h5>
+            <h5 className='dohome'>Welcome {currentUser?.firstName} {currentUser?.lastName}</h5>
             {rooms.length > 0 ? (
             <>
-              <h6>Total Room: {rooms.length} rooms</h6>
-              <h6>Value: {roomValue} baht</h6>
-              <h6>Average Price: {avgPrice} baht</h6>
+              <div className='total-room-text'>
+              <i class='bx bx-heart-circle'></i>
+              <h6 className='texth-1'>{rooms.length}</h6>
+              <h6 className='texth-11'>ห้องทั้งหมด</h6>
+              </div>
+              <div className='total-room-value'>
+              <i class='bx bx-wallet-alt'></i>
+              <h6 className='texth-2'>{roomValue} 💸</h6>
+              <h6 className='texth-22'>รายได้ทั้งหมด</h6>
+              </div>
+              <div className='total-room-average'>
+              <i class='bx bx-scatter-chart'></i>
+              <h6 className='texth-3'>{avgPrice} 💸</h6>
+              <h6 className='texth-33'>รายได้เฉลี่ย</h6>
+              </div>
             </>)
             : <h6>You have no room</h6>}
           </div>

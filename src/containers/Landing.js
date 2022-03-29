@@ -47,7 +47,7 @@ const Login = ()=> {
             </div>
             <br></br>
             <div className="form-button">
-              <label className="btn btn-primary" onClick={handleSubmit}>ลงชื่อเข้าใช้</label>
+              <label className="btn btn-primary l" onClick={handleSubmit}>ลงชื่อเข้าใช้</label>
             </div> 
             <br></br>
           
