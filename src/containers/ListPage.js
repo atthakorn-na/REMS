@@ -16,7 +16,7 @@ import { AuthContext } from '../services/Auth'
 import HandleChange from '../services/HandleChange';
 
 const ListPage = () => {
-    const { currentUser, rooms, addNewRoom } = useContext(AuthContext);
+    const { currentUser, rooms, addNewRoom, deleteRoom, editRoom } = useContext(AuthContext);
     
     const [allList, setAllList] = useState();
 
@@ -31,7 +31,6 @@ const ListPage = () => {
     
     useEffect(() => {
       setAllList(rooms);
-      console.log("HAHAHA")
     }, [rooms]);
 
     //EDIT
@@ -44,14 +43,15 @@ const ListPage = () => {
 
     const handleSubmitEdit = (event) => {
       event.preventDefault();
+      
+      editRoom(EditCondo);
+      // let cache = [...allList];
 
-      let cache = [...allList];
+      // const index = allList.findIndex((list) => list.roomId === Status);
 
-      const index = allList.findIndex((list) => list.roomId === Status);
+      // cache[index] = EditCondo;
 
-      cache[index] = EditCondo;
-
-      setAllList(cache)
+      // setAllList(cache)
       
       handleCancel();
 
@@ -64,7 +64,8 @@ const ListPage = () => {
 }
 
   const handleDelete = (itemToRemove) => {
-    setAllList((prev) => prev.filter((item) => item.roomId !== itemToRemove));               
+    deleteRoom(itemToRemove);
+    alert("ลบห้องพักสำเร็จ");               
   };
 
   const [show, setShow] = useState(false);

@@ -115,10 +115,27 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
-    async function deleteRoom(room) {
+    async function deleteRoom(id) {
       try {
         const requestOptions = {
           method: 'DELETE',
+          url: ServiceEndpoint.deleteRoom,
+          headers: { 'Content-Type': 'application/json' },
+          params: {roomId: id}
+        };
+        await HTTP(requestOptions)
+          .then(() => {
+            setRooms((prev) => prev.filter((item) => item.roomId !== id));
+          })
+      } catch(error) {
+        alert(error);
+      }
+    }
+
+    async function editRoom(room) {
+      try {
+        const requestOptions = {
+          method: 'PUT',
           url: ServiceEndpoint.addRoom,
           headers: { 'Content-Type': 'application/json' },
           data: JSON.stringify(room)
@@ -126,6 +143,7 @@ export const AuthProvider = ({ children }) => {
         await HTTP(requestOptions)
           .then(response => {
             if (response.data) {
+              setRooms((prev) => prev.filter((item) => item.roomId !== room.roomId));
               setRooms((prev) => [...prev, response.data]);
             }
           })
@@ -135,7 +153,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration, wrongPassword, addNewRoom}}>
+        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration, wrongPassword, addNewRoom, deleteRoom, editRoom}}>
             {children}
         </AuthContext.Provider>
     )

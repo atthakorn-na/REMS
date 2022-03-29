@@ -4,5 +4,6 @@ export const ServiceEndpoint = {
     registration: "user",
     changePassword: "change-password",
     getAllRoom: "room",
-    addRoom: "room"
+    addRoom: "room",
+    deleteRoom: "room"
 }
