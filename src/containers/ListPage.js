@@ -9,25 +9,30 @@ import '../css/rawdata.css';
 import EditableRow from '../components/EditableRow';
 import Navbar from '../components/Navbar';
 import ReadOnlyRow from "../components/ReadOnlyRow";
+import AddNewRoom from "../components/AddNewRoom"
 
 //service
 import { AuthContext } from '../services/Auth'
 import HandleChange from '../services/HandleChange';
 
 const ListPage = () => {
-    const { currentUser, rooms } = useContext(AuthContext);
+    const { currentUser, rooms, addNewRoom } = useContext(AuthContext);
     
     const [allList, setAllList] = useState();
 
     const [Status, setStatus] = useState(null)
 
     const [EditCondo, setEditCondo] = useState();
+
+    const [newRoom, setNewRoom] = useState();
+
+    const [newRoomStatus, setNewRoomStatus] = useState(false);
     
     
     useEffect(() => {
       setAllList(rooms);
       console.log("HAHAHA")
-    }, []);
+    }, [rooms]);
 
     //EDIT
     const handleEditClick = (target) => {
@@ -62,9 +67,20 @@ const ListPage = () => {
     setAllList((prev) => prev.filter((item) => item.roomId !== itemToRemove));               
   };
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  //Add Room
+  const handleChangeAddRoom = (event) => HandleChange(event, setNewRoom);
+
+  const handleAddRoom = () => {
+    newRoom['ownerEmail'] = currentUser.email;
+    addNewRoom(newRoom);
+    setNewRoomStatus(false);
+    setNewRoom([])
+    alert("บันทึกสำเร็จ");
+  }
         
       return(
         <>
@@ -76,9 +92,12 @@ const ListPage = () => {
                   <h1>รายการห้องพัก</h1>
                   
                   <div class="gap-2 d-md-flex justify-content-md-end  ">
-                      <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
-                          จัดการห้องพัก
-                      </button>
+                    <button  class="btn btn-primary custombtn " variant="primary" onClick={() => setNewRoomStatus(true)}>
+                        เพิ่มห้อง
+                    </button>
+                    <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
+                        จัดการห้องพัก
+                    </button>
                       {/* <Modal show={show} onHide={handleClose} animation={false}>
                           <Modal.Header closeButton>
                           <Modal.Title>จัดการห้องพัก</Modal.Title>
@@ -90,28 +109,28 @@ const ListPage = () => {
                                   name="fullName"
                                   required="required"
                                   placeholder="ชื่อโครงการ..."
-                                  onChange={handleAddFormChange}
+                                  // onChange={handleAddFormChange}
                                   />
                                   <input
                                   type="text"
                                   name="address"
                                   required="required"
                                   placeholder="ที่อยู่โครงการ..."
-                                  onChange={handleAddFormChange}
+                                  // onChange={handleAddFormChange}
                                   />
                                   <input
                                   type="text"
                                   name="phoneNumber"
                                   required="required"
                                   placeholder="ประเภทห้อง..."
-                                  onChange={handleAddFormChange}
+                                  // onChange={handleAddFormChange}
                                   />
                                   <input
                                   type="email"
                                   name="email"
                                   required="required"
                                   placeholder="ค่าเช่า..."
-                                  onChange={handleAddFormChange}
+                                  // onChange={handleAddFormChange}
                                   />
                                   <button type="submit">Add</button>
                               </form>
@@ -125,20 +144,32 @@ const ListPage = () => {
                           </button>
                           </Modal.Footer>
                       </Modal> */}
+                      
                   </div>
                   </div> 
-
                   <div className='content_tablelist'>
               <form >
+                {newRoomStatus ? <AddNewRoom handleChange={handleChangeAddRoom} handleSubmit={handleAddRoom} user={currentUser} /> : null}
                   <table>
                     <thead>
                       <tr>
-                      <th >Status</th>
-                      <th >เจ้าของ</th>
-                      <th>เอเจ้น</th>
-                      <th>โครงการ</th>
-                      <th >เขต</th>
-                      <th>ราคา</th>
+                      <th>Status</th>
+                      <th>Owner</th>
+                      <th>Agency</th>
+                      <th>Customer</th>
+                      <th>Project</th>
+                      <th>Location</th>
+                      <th>Unit No.</th>
+                      <th>Direction</th>
+                      <th>Building</th>
+                      <th>Floor</th>
+                      <th>Size (m²)</th>
+                      <th>Type</th>
+                      <th>Fee</th>
+                      <th>Negotiate</th>
+                      <th>Remark</th>
+                      <th>Receive Date</th>
+                      <th>Last Update</th>
                       </tr>
                     </thead>
                     <tbody>

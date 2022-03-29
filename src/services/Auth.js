@@ -96,8 +96,46 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    async function addNewRoom(room) {
+      try {
+        const requestOptions = {
+          method: 'POST',
+          url: ServiceEndpoint.addRoom,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(room)
+        };
+        await HTTP(requestOptions)
+          .then(response => {
+            if (response.data) {
+              setRooms((prev) => [...prev, response.data]);
+            }
+          })
+      } catch(error) {
+        alert(error);
+      }
+    }
+
+    async function deleteRoom(room) {
+      try {
+        const requestOptions = {
+          method: 'DELETE',
+          url: ServiceEndpoint.addRoom,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(room)
+        };
+        await HTTP(requestOptions)
+          .then(response => {
+            if (response.data) {
+              setRooms((prev) => [...prev, response.data]);
+            }
+          })
+      } catch(error) {
+        alert(error);
+      }
+    }
+
     return (
-        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration, wrongPassword}}>
+        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration, wrongPassword, addNewRoom}}>
             {children}
         </AuthContext.Provider>
     )
