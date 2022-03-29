@@ -26,13 +26,8 @@ class Profile extends Component{
                             <label for="file-input">
                                     <span className='upload'>Upload</span>  
                                       </label>
-                                
-
-
-
                             </div>
                             </div>
-                                      
                     </div>
                     <div class="col">
                         <div class="row align-items-center">
@@ -41,7 +36,6 @@ class Profile extends Component{
                                    <div class="image-upload">
                                     <input id="file-input" type="file"/>
                                 </div>
-
                             </div>
                         </div>
                     </div>

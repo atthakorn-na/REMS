@@ -7,7 +7,8 @@ export const AuthContext = React.createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const [rooms, setRooms] = useState()
+    const [rooms, setRooms] = useState();
+    const [wrongPassword, setWrongPassword] = useState(false);
     let navigate = useNavigate();
     
     if(!AuthContext){
@@ -27,6 +28,9 @@ export const AuthProvider = ({ children }) => {
             if (response.data) {
               setCurrentUser(response.data);
               getAllRoom(loginUser);
+              setWrongPassword(false);
+            } else {
+              setWrongPassword(true);
             }
           })
       } catch(error) {
@@ -46,6 +50,7 @@ export const AuthProvider = ({ children }) => {
           .then(() => {
             navigate("../", { replace: true });
             setCurrentUser(null);
+            setRooms(null);
           })
       } catch(error) {
         alert(error)
@@ -92,7 +97,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration}}>
+        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration, wrongPassword}}>
             {children}
         </AuthContext.Provider>
     )

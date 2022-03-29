@@ -7,13 +7,11 @@ import { AuthContext } from '../services/Auth';
 
 const Login = ()=> {
   const [loginUser, setLoginUser] = useState();
-  const { loginAuth } = useContext(AuthContext);
-  const [wrongUser, setWrongUser] = useState(false);
+  const { loginAuth, wrongPassword } = useContext(AuthContext);
 
   const handleSubmit = async () => {
     try {
       await loginAuth(loginUser);
-      setWrongUser(true);
     } catch(error) {
       alert(error);
     }  
@@ -33,7 +31,7 @@ const Login = ()=> {
           <p  className="t1" >REAL ESTATE</p><n></n><p className="t1">MANAGEMENT</p><n></n><p className="t2">SYSTEM</p>            
         </div>
         <div className="loginbox">
-          <form /*onSubmit={handleSubmit}*/>
+          <form>
             <a2>ยินดีต้อนรับ</a2>
             <div className="form-email-login">
               <div class="form-email-real">
@@ -44,7 +42,7 @@ const Login = ()=> {
             <div className="form-password-login">
               <div className="form-pass-real">
                 <input type="password" name="password" className="form-control" id="inputPassword3" placeholder="รหัสผ่าน" onChange={handleChange}></input>
-                {wrongUser ? <label className='text-error' form='password'>Email address or password is either incorrect or not regitered with REMS.</label> : null}
+                {wrongPassword ? <label className='text-error' form='password'>Email address or password is either incorrect or not regitered with REMS.</label> : null}
               </div>
             </div>
             <br></br>
