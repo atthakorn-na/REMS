@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 
 import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
 import Modal, {
@@ -16,9 +16,12 @@ import { AuthContext } from '../services/Auth'
 
 const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
 
-  const { currentUser, rent } = useContext(AuthContext);
+  const { rent, getLog, allLog } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState({roomId: room.roomId, ownerEmail: room.ownerEmail, agentEmail: room.agentEmail, fee: room.fee});
+  const [viewLog, setViewLog] = useState(false);
+  const [localLog, setLocalLog] = useState(false);
+
   const openModal = useCallback(() => setIsOpen(true), []);
   const closeModal = useCallback(() => setIsOpen(false), []);
 
@@ -30,7 +33,20 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
     rent(input);
   }
 
+  const handleWatchLog = async (event) => {
+    event.preventDefault();
+    await getLog(room.roomId);
+    console.log(allLog);
+    
+    if(viewLog) {
+      setViewLog(false);
+    } else {
+      setViewLog(true);
+    }
+  }
+
   return (
+  <>
     <tr id={room.roomId} key={room.roomId}>
       <td>{room.status}</td>
       <td>{room.ownerEmail}</td>
@@ -53,7 +69,7 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
         <DropdownMenu class="btn btn-primary modalbtn" trigger="More">
           <DropdownItemGroup>
             <DropdownItem onClick={() => handleEditClick(room)}>Edit</DropdownItem>
-            <DropdownItem>History</DropdownItem>
+            <DropdownItem onClick={handleWatchLog}>History</DropdownItem>
             <DropdownItem appearance="primary" onClick={openModal}>Rent</DropdownItem>
           </DropdownItemGroup>
         </DropdownMenu>
@@ -94,6 +110,27 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
         </button>
       </td>
     </tr>
+    {viewLog && allLog ?
+      <>
+          <tr>
+            <th> </th>
+            <th> </th>
+            <th>Customer</th>
+            <th>Fee</th>
+            <th>Date</th>
+          </tr>
+        {allLog.map((log) => 
+          <tr onClick={() => setViewLog(false)} id={log.id}>
+            <td> </td>
+            <td> </td>
+            <td>{log.customerEmail}</td>
+            <td>{log.fee}</td>
+            <td>{log.date}</td>
+          </tr>
+        )}
+      </>
+      : null}
+  </>
   );
 };
 

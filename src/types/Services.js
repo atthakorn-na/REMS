@@ -8,5 +8,6 @@ export const ServiceEndpoint = {
     addRoom: "room",
     deleteRoom: "room",
     editRoom: "room",
-    rent: "room/rent"
+    rent: "room/rent",
+    log: "room/log"
 }

@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [rooms, setRooms] = useState();
     const [wrongPassword, setWrongPassword] = useState(false);
+    const [allLog, setAllLog] = useState(null);
     let navigate = useNavigate();
     
     if(!AuthContext){
@@ -203,6 +204,23 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
+    async function getLog(id) {
+      try {
+        const requestOptions = {
+          method: 'GET',
+          url: ServiceEndpoint.log,
+          headers: { 'Content-Type': 'application/json' },
+          params: {roomId: id}
+        };
+        await HTTP(requestOptions)
+          .then(response => {
+            setAllLog(response.data);
+          })
+      } catch (error) {
+        alert(error);
+      }
+    }
+
     return (
         <AuthContext.Provider value={{
           currentUser, 
@@ -217,7 +235,9 @@ export const AuthProvider = ({ children }) => {
           addNewRoom, 
           deleteRoom, 
           updateRoom,
-          rent
+          rent,
+          allLog,
+          getLog
           }}>
             {children}
         </AuthContext.Provider>
