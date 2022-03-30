@@ -76,6 +76,37 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
+    async function changePassword(user) {
+      try {
+        const requestOptions = {
+          method: 'PUT',
+          url: ServiceEndpoint.changePassword,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(user)
+        };
+        await HTTP(requestOptions)
+        .then(() => alert("DONE"))
+      } catch(error) {
+        alert(error);
+      }
+    }
+
+    async function updateProfile(user) {
+      try {
+        const requestOptions = {
+          method: 'PUT',
+          url: ServiceEndpoint.updateProfile,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(user)
+        };
+        await HTTP(requestOptions)
+        .then((response) =>  setCurrentUser(response.data))
+        .finally(() => alert("Update Profile Done"))
+      } catch(error) {
+        alert(error);
+      }
+    }
+
     async function getAllRoom(loginUser) {
       try {
         const requestOptions = {
@@ -153,7 +184,20 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{currentUser, loginAuth, logoutAuth, getAllRoom, rooms, registration, wrongPassword, addNewRoom, deleteRoom, editRoom}}>
+        <AuthContext.Provider value={{
+          currentUser, 
+          loginAuth, 
+          logoutAuth,
+          updateProfile,
+          changePassword, 
+          getAllRoom, 
+          rooms, 
+          registration, 
+          wrongPassword, 
+          addNewRoom, 
+          deleteRoom, 
+          editRoom
+          }}>
             {children}
         </AuthContext.Provider>
     )
