@@ -6,9 +6,9 @@ const EditableRow = ({
   handleSubmit, 
   handleCancel
 }) => {
+
   return (
-  
-    <tr id={editData.roomId} key={editData.roomId} >
+    <tr id={editData.roomId} key={editData.roomId}>
       <div className="edit-table">
       <td>
         <p>{editData.status}</p>
@@ -34,14 +34,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed4"
-          type="text"
-          required="required"
-          placeholder="customer"
-          name="customerEmail"
-          value={editData.customerEmail}
-          onChange={handleChange}
-        />
+        <p>{editData.customerEmail ? editData.customerEmail: '-'}</p>
       </td>
       <td>
         <input className="ed4"
@@ -54,7 +47,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed5"
+        <input className="ed4"
           type="text"
           required="required"
           placeholder="Location"

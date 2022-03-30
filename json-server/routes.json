@@ -1,4 +1,0 @@
-{
-    "/lists": "/lists?location=บางเขน",
-    "/lists/:building": "/:lists?building=:building"
-}

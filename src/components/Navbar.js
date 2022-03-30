@@ -57,7 +57,7 @@ const Navbar =()=>{
               <img src=''alt=''></img>
               <div class='name_job'>
                 <div class='name'>{currentUser?.firstName} {currentUser?.lastName}</div>
-                <div class='job'>Owner</div>
+                <div class='job'>{currentUser.agent ? 'Agent': 'Owner'}</div>
 
               </div>
             </div>

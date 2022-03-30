@@ -27,12 +27,8 @@ const Profile = () => {
     const handleEditProfileBtn = () => setUpdateProfileStatus(true);
     const handleProfileUpdateSubmit = async (event) => {
         event.preventDefault();
-        try {
-            await updateProfile({email: currentUser.email, firstName: newProfile.firstName, lastName: newProfile.lastName, mobileNo: newProfile.mobileNo, dateOfBirth: newProfile.dateOfBirth});
-            setUpdateProfileStatus(false);
-        } catch (error) {
-            alert(error);
-        }
+        await updateProfile({email: currentUser.email, firstName: newProfile.firstName, lastName: newProfile.lastName, mobileNo: newProfile.mobileNo, dateOfBirth: newProfile.dateOfBirth});
+        setUpdateProfileStatus(false);
     }
 
     const handlePasswordChange = (event) => HandleChange(event, setPassword);
@@ -40,13 +36,9 @@ const Profile = () => {
     const handleChangePasswordSubmit = async (event) => {
         event.preventDefault();
         if (newPassword.newPassword === newPassword.confirmPassword) {
-            try {
-                await changePassword({email: currentUser.email, password: newPassword.oldPassword, newPassword: newPassword.newPassword});
-                setPasswordPair(true);
-                setChangePassword(false);
-              } catch(error) {
-                alert(error);
-              }  
+            await changePassword({email: currentUser.email, password: newPassword.oldPassword, newPassword: newPassword.newPassword});
+            setPasswordPair(true);
+            setChangePassword(false);
         } else {
             setPasswordPair(false);
         }

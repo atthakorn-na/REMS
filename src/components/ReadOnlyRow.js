@@ -1,7 +1,20 @@
 
-import React from "react";
+import React, { useState, useCallback } from "react";
+
+import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
+import Modal, {
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  ModalTransition,
+} from '@atlaskit/modal-dialog';
 
 const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = useCallback(() => setIsOpen(true), []);
+  const closeModal = useCallback(() => setIsOpen(false), []);
+
   return (
     <tr id={room.roomId} key={room.roomId}>
       <td>{room.status}</td>
@@ -22,12 +35,31 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
       <td>{room.dateReceive}</td>
       {room.update ? <td>{room.update}</td> : <td> - </td>}
       <td>
-        <button
-          type="button" class="btn btn-primary modalbtn"
-          onClick={() => handleEditClick(room)}
-        >
-          Edit
-        </button>
+        <DropdownMenu class="btn btn-primary modalbtn" trigger="More">
+          <DropdownItemGroup>
+            <DropdownItem onClick={() => handleEditClick(room)}>Edit</DropdownItem>
+            <DropdownItem>History</DropdownItem>
+            <DropdownItem appearance="primary" onClick={openModal}>Rent</DropdownItem>
+          </DropdownItemGroup>
+        </DropdownMenu>
+        <ModalTransition>
+        {isOpen && (
+          <Modal onClose={closeModal}>
+            <ModalHeader>
+              <ModalTitle>Rental Detail</ModalTitle>
+            </ModalHeader>
+            <ModalBody>
+              
+            </ModalBody>
+            <ModalFooter>
+              <button appearance="subtle">Cancel</button>
+              <button appearance="primary" onClick={closeModal} autoFocus>
+                Duplicate
+              </button>
+            </ModalFooter>
+          </Modal>
+        )}
+      </ModalTransition>
       </td>
       <td> 
         <button 

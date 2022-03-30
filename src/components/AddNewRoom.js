@@ -9,26 +9,19 @@ const EditableRow = ({
   
     <tr>
       <div className="edit-table">
-      {/* <td>
-        <label>Status</label>
-        <input className="ed1"
-          type="text"
-          required="required"
-          placeholder="Status"
-          name="status"
-          onChange={handleChange}
-        />
-      </td> */}
-      {/* <td>
+      {user.owner ? null:
+      <td>
         <label>Owner Email</label>
         <input className="ed2"
           type="text"
           required="required"
           placeholder="Owner Email"
           name="ownerEmail"
-          value={user.email}
+          onChange={handleChange}
         />
-      </td> */}
+      </td>
+      }
+      {user.agent ? null:
       <td>
         <label>Agency Email</label> 
         <input className="ed3"
@@ -39,6 +32,7 @@ const EditableRow = ({
           onChange={handleChange}
         />
       </td>
+      }
       <td>
         <label>Project Name</label>
         <input className="ed4"

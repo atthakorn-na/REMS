@@ -15,7 +15,7 @@ const Home = () => {
     for(let room in rooms) {
       roomValue += rooms[room].fee;
     }
-    avgPrice = roomValue/rooms.length;
+    avgPrice = Math.floor(roomValue/rooms.length);
   }
 
   return (
@@ -38,8 +38,8 @@ const Home = () => {
               </div>
               <div className='total-room-average'>
               <i class='bx bx-scatter-chart'></i>
-              <h6 className='texth-3'>{avgPrice} 💸</h6>
-              <h6 className='texth-33'>รายได้เฉลี่ย</h6>
+              <h6 className='texth-3'>~ {avgPrice} 💸</h6>
+              <h6 className='texth-33'>รายได้เฉลี่ย/ห้อง</h6>
               </div>
             </>)
             : <h6>You have no room</h6>}

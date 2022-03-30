@@ -1,7 +1,6 @@
 import {useState, useEffect, useContext, Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.min.js";
-import { Modal } from 'react-bootstrap';
 import 'boxicons';
 import '../css/rawdata.css';
 
@@ -62,7 +61,12 @@ const ListPage = () => {
   const handleChangeAddRoom = (event) => HandleChange(event, setNewRoom);
 
   const handleAddRoom = () => {
-    newRoom['ownerEmail'] = currentUser.email;
+    if (currentUser.owner) {
+      newRoom['ownerEmail'] = currentUser.email;
+    } else if (currentUser.agent) {
+      newRoom['agentEmail'] = currentUser.email
+    }
+    
     addNewRoom(newRoom);
     setNewRoomStatus(false);
     setNewRoom([])
@@ -85,53 +89,6 @@ const ListPage = () => {
                     <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
                         จัดการห้องพัก
                     </button>
-                      {/* <Modal show={show} onHide={handleClose} animation={false}>
-                          <Modal.Header closeButton>
-                          <Modal.Title>จัดการห้องพัก</Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>
-                              <form onSubmit={handleAddFormSubmit}>
-                                  <input
-                                  type="text"
-                                  name="fullName"
-                                  required="required"
-                                  placeholder="ชื่อโครงการ..."
-                                  // onChange={handleAddFormChange}
-                                  />
-                                  <input
-                                  type="text"
-                                  name="address"
-                                  required="required"
-                                  placeholder="ที่อยู่โครงการ..."
-                                  // onChange={handleAddFormChange}
-                                  />
-                                  <input
-                                  type="text"
-                                  name="phoneNumber"
-                                  required="required"
-                                  placeholder="ประเภทห้อง..."
-                                  // onChange={handleAddFormChange}
-                                  />
-                                  <input
-                                  type="email"
-                                  name="email"
-                                  required="required"
-                                  placeholder="ค่าเช่า..."
-                                  // onChange={handleAddFormChange}
-                                  />
-                                  <button type="submit">Add</button>
-                              </form>
-                          </Modal.Body>
-                          <Modal.Footer>
-                          <button variant="secondary"class="btn btn-primary modalbtn" onClick={handleClose}>
-                              บันทึก
-                          </button>
-                          <button variant="primary" class="btn btn-primary modalbtn"onClick={handleClose}>
-                          ยกเลิก
-                          </button>
-                          </Modal.Footer>
-                      </Modal> */}
-                      
                   </div>
                   </div> 
                   <div className='content_tablelist'>
