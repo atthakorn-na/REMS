@@ -7,5 +7,6 @@ export const ServiceEndpoint = {
     getAllRoom: "room",
     addRoom: "room",
     deleteRoom: "room",
-    editRoom: "room"
+    editRoom: "room",
+    rent: "room/rent"
 }

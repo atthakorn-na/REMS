@@ -183,6 +183,26 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
+    async function rent(room) {
+      try {
+        const requestOptions = {
+          method: 'POST',
+          url: ServiceEndpoint.rent,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(room)
+        };
+        await HTTP(requestOptions)
+          .then(response => {
+            if (response.data) {
+              setRooms((prev) => prev.filter((item) => item.roomId !== room.roomId));
+              setRooms((prev) => [...prev, response.data]);
+            }
+          })
+      } catch (error) {
+        alert(error);
+      }
+    }
+
     return (
         <AuthContext.Provider value={{
           currentUser, 
@@ -196,7 +216,8 @@ export const AuthProvider = ({ children }) => {
           wrongPassword, 
           addNewRoom, 
           deleteRoom, 
-          updateRoom
+          updateRoom,
+          rent
           }}>
             {children}
         </AuthContext.Provider>
