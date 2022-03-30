@@ -16,16 +16,12 @@ import { AuthContext } from '../services/Auth'
 import HandleChange from '../services/HandleChange';
 
 const ListPage = () => {
-    const { currentUser, rooms, addNewRoom, deleteRoom, editRoom } = useContext(AuthContext);
+    const { currentUser, rooms, addNewRoom, deleteRoom, updateRoom } = useContext(AuthContext);
     
     const [allList, setAllList] = useState();
-
     const [Status, setStatus] = useState(null)
-
     const [EditCondo, setEditCondo] = useState();
-
     const [newRoom, setNewRoom] = useState();
-
     const [newRoomStatus, setNewRoomStatus] = useState(false);
     
     
@@ -41,20 +37,10 @@ const ListPage = () => {
 
     const handleChangeEditForm = (event)=> HandleChange(event, setEditCondo);
 
-    const handleSubmitEdit = (event) => {
+    const handleSubmitEdit = async (event) => {
       event.preventDefault();
-      
-      editRoom(EditCondo);
-      // let cache = [...allList];
-
-      // const index = allList.findIndex((list) => list.roomId === Status);
-
-      // cache[index] = EditCondo;
-
-      // setAllList(cache)
-      
+      await updateRoom(EditCondo);
       handleCancel();
-
     }
 
   const handleCancel = () => {

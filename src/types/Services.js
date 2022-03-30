@@ -6,5 +6,6 @@ export const ServiceEndpoint = {
     updateProfile: "user/update-profile",
     getAllRoom: "room",
     addRoom: "room",
-    deleteRoom: "room"
+    deleteRoom: "room",
+    editRoom: "room"
 }

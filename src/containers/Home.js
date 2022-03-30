@@ -11,14 +11,12 @@ const Home = () => {
   let avgPrice = 0;
   let roomValue = 0;
 
-  useEffect(() => {
-    if (rooms.length > 0) {
+  if (rooms.length > 0) {
     for(let room in rooms) {
       roomValue += rooms[room].fee;
     }
-      avgPrice = roomValue/rooms.length;
-    }
-  }, [rooms]);
+    avgPrice = roomValue/rooms.length;
+  }
 
   return (
       <div> 

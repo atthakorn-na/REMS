@@ -9,7 +9,7 @@ const EditableRow = ({
   
     <tr>
       <div className="edit-table">
-      <td>
+      {/* <td>
         <label>Status</label>
         <input className="ed1"
           type="text"
@@ -18,7 +18,7 @@ const EditableRow = ({
           name="status"
           onChange={handleChange}
         />
-      </td>
+      </td> */}
       {/* <td>
         <label>Owner Email</label>
         <input className="ed2"

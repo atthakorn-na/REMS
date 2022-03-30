@@ -11,14 +11,7 @@ const EditableRow = ({
     <tr id={editData.roomId} key={editData.roomId} >
       <div className="edit-table">
       <td>
-        <input className="ed1"
-          type="text"
-          required="required"
-          placeholder="Status"
-          name="status"
-          value={editData.status}
-          onChange={handleChange}
-        />
+        <p>{editData.status}</p>
       </td>
       <td>
         <input className="ed2"
@@ -159,6 +152,12 @@ const EditableRow = ({
           value={editData.remark}
           onChange={handleChange}
         />
+      </td>
+      <td>
+        <p>{editData.dateReceive}</p>
+      </td>
+      <td>
+        <p>{editData.update ? editData.update: '-' }</p>
       </td>
       <td><button class="btn btn-primary modalbtn " onClick={(event) => handleSubmit(event)}>Save</button></td>
       <td><button class="btn btn-danger closebtne" onClick={() => handleCancel()}>X</button></td>  

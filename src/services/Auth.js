@@ -163,11 +163,11 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
-    async function editRoom(room) {
+    async function updateRoom(room) {
       try {
         const requestOptions = {
           method: 'PUT',
-          url: ServiceEndpoint.addRoom,
+          url: ServiceEndpoint.editRoom,
           headers: { 'Content-Type': 'application/json' },
           data: JSON.stringify(room)
         };
@@ -196,7 +196,7 @@ export const AuthProvider = ({ children }) => {
           wrongPassword, 
           addNewRoom, 
           deleteRoom, 
-          editRoom
+          updateRoom
           }}>
             {children}
         </AuthContext.Provider>
