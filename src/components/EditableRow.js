@@ -44,6 +44,16 @@ const EditableRow = ({
         <input className="ed4"
           type="text"
           required="required"
+          placeholder="customer"
+          name="customerEmail"
+          value={editData.customerEmail}
+          onChange={handleChange}
+        />
+      </td>
+      <td>
+        <input className="ed4"
+          type="text"
+          required="required"
           placeholder="Project Name"
           name="project"
           value={editData.project}
@@ -64,7 +74,7 @@ const EditableRow = ({
         <input className="ed6"
           type="text"
           required="required"
-          placeholder="Unit No."
+          placeholder=" "
           name="unitNo"
           value={editData.unitNo}
           onChange={handleChange}
@@ -91,7 +101,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed1"
+        <input className="ed7"
           type="text"
           required="required"
           placeholder="Floor"
@@ -101,7 +111,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed1"
+        <input className="ed8"
           type="text"
           required="required"
           placeholder="Size"
@@ -111,7 +121,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed1"
+        <input className="ed9"
           type="text"
           required="required"
           placeholder="Type"
@@ -121,7 +131,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed1"
+        <input className="ed9"
           type="text"
           required="required"
           placeholder="Rental Fee"
@@ -131,7 +141,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed1"
+        <input className="ed10"
           type="text"
           required="required"
           placeholder="Negotiate"
@@ -141,7 +151,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed1"
+        <input className="ed11"
           type="text"
           required="required"
           placeholder="Remark"

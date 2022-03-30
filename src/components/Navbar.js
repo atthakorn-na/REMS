@@ -51,7 +51,7 @@ const Navbar =()=>{
           </li>
         </ul>
         <div class='profile_content'>
-          <a onClick={() => logoutAuth(currentUser)}>Logout</a>
+
           <div class='profile'>
             <div class='profile_details'>
               <img src=''alt=''></img>
@@ -62,6 +62,9 @@ const Navbar =()=>{
               </div>
             </div>
           </div>
+                    <button onClick={() => logoutAuth(currentUser)}>
+          <i class='bx bxs-log-out'></i>
+            Logout</button>
         </div>
       </div>
     </div>
