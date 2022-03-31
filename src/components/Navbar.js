@@ -5,7 +5,7 @@ import 'boxicons';
 import '../css/nav.css';
 import { useNavigate } from "react-router-dom";
 
-const Navbar =()=>{
+const Navbar = () => {
     
   const { currentUser, logoutAuth } = useContext(AuthContext);  
   let navigate = useNavigate();

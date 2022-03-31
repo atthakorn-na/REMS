@@ -6,12 +6,15 @@ import { AuthContext } from '../services/Auth'
 import { useNavigate } from "react-router-dom";
 
 const Regis = () => {
-  const [regisUser, setRegisUser] = useState();
-  const { registration } = useContext(AuthContext);
+  const { registration, role, setRole } = useContext(AuthContext);
+  const [regisUser, setRegisUser] = useState(role);
   let navigate = useNavigate();
+  console.log(regisUser)
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     await registration(regisUser);
+    setRole(null);
   }
 
   const handleChange = (event) => {
@@ -38,6 +41,14 @@ const Regis = () => {
         <div className="form-email">
         <div class="form-email-real">
           <input /*type="email"*/ name="email" class="form-control" id="inputEmail3" placeholder="อีเมลล์หรือชื่อผู้ใช้" onChange={handleChange}/>
+        </div>
+        <br></br>
+        <div class="form-email-real">
+          <input name="mobileNo" class="form-control" id="inputname3" placeholder="เบอร์โทรศัพท์" onChange={handleChange}/>
+        </div>
+        <br></br>
+        <div class="form-email-real">
+          <input name="dateOfBirth" class="form-control" id="inputname3" placeholder="วัน/เดือน/ปีเกิด(พ.ศ.)" onChange={handleChange}/>
         </div>
       </div>
       <br></br>

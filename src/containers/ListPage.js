@@ -15,14 +15,14 @@ import { AuthContext } from '../services/Auth'
 import HandleChange from '../services/HandleChange';
 
 const ListPage = () => {
-    const { currentUser, rooms, addNewRoom, deleteRoom, updateRoom } = useContext(AuthContext);
+    const { currentUser, rooms, addNewRoom, deleteRoom, updateRoom, getLog, allLog } = useContext(AuthContext);
     
     const [allList, setAllList] = useState();
     const [Status, setStatus] = useState(null)
     const [EditCondo, setEditCondo] = useState();
     const [newRoom, setNewRoom] = useState();
     const [newRoomStatus, setNewRoomStatus] = useState(false);
-    
+    const [viewLog, setViewLog] = useState(false);
     
     useEffect(() => {
       setAllList(rooms);
@@ -72,6 +72,13 @@ const ListPage = () => {
     setNewRoom([])
     alert("บันทึกสำเร็จ");
   }
+
+  const handleWatchLog = async (event, target) => {
+    event.preventDefault();
+    await getLog(target.roomId);
+    console.log(allLog);
+    setViewLog(target.roomId)
+  }
         
       return(
         <>
@@ -119,7 +126,7 @@ const ListPage = () => {
                     <tbody>
                       {allList.map((room) => 
                         room.roomId !== Status ?
-                        <ReadOnlyRow room={room} handleDelete={handleDelete} handleEditClick={handleEditClick}/> :
+                        <ReadOnlyRow room={room} handleDelete={handleDelete} handleEditClick={handleEditClick} handleWatchLog={handleWatchLog} viewLog={viewLog} setViewLog={setViewLog}/> :
                         <EditableRow editData={EditCondo} handleChange={handleChangeEditForm} handleSubmit={handleSubmitEdit} handleCancel={handleCancel}/>
                       )}
                     </tbody>

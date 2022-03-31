@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [rooms, setRooms] = useState();
     const [wrongPassword, setWrongPassword] = useState(false);
     const [allLog, setAllLog] = useState(null);
+    const [role, setRole] = useState();
     let navigate = useNavigate();
     
     if(!AuthContext){
@@ -27,7 +28,9 @@ export const AuthProvider = ({ children }) => {
         await HTTP(requestOptions)
           .then(response => {
             if (response.data) {
-              setCurrentUser(response.data);
+              localStorage.setItem("user", JSON.stringify(response.data));
+              setCurrentUser(JSON.parse(localStorage.getItem("user")));
+              console.log(currentUser)
               getAllRoom(loginUser);
               setWrongPassword(false);
             } else {
@@ -50,6 +53,8 @@ export const AuthProvider = ({ children }) => {
         await HTTP(requestOptions)
           .then(() => {
             navigate("../", { replace: true });
+            localStorage.removeItem("user");
+            localStorage.removeItem("rooms");
             setCurrentUser(null);
             setRooms(null);
           })
@@ -119,7 +124,8 @@ export const AuthProvider = ({ children }) => {
         await HTTP(requestOptions)
           .then(response => {
             if (response.data) {
-              setRooms(response.data);
+              localStorage.setItem("rooms", JSON.stringify(response.data));
+              setRooms(JSON.parse(localStorage.getItem("rooms")));
               navigate("../home", { replace: true })
             }
           })
@@ -227,7 +233,9 @@ export const AuthProvider = ({ children }) => {
           loginAuth, 
           logoutAuth,
           updateProfile,
-          changePassword, 
+          changePassword,
+          role,
+          setRole, 
           getAllRoom, 
           rooms, 
           registration, 

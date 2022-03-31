@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useContext, useEffect } from "react";
+import React, { useState, useCallback, useContext } from "react";
 
 import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
 import Modal, {
@@ -14,13 +14,11 @@ import HandleChange from '../services/HandleChange'
 import { AuthContext } from '../services/Auth'
 
 
-const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
+const ReadOnlyRow = ({ room, handleDelete, handleEditClick, handleWatchLog, viewLog, setViewLog }) => {
 
-  const { rent, getLog, allLog } = useContext(AuthContext);
+  const { rent, allLog } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState({roomId: room.roomId, ownerEmail: room.ownerEmail, agentEmail: room.agentEmail, fee: room.fee});
-  const [viewLog, setViewLog] = useState(false);
-  const [localLog, setLocalLog] = useState(false);
 
   const openModal = useCallback(() => setIsOpen(true), []);
   const closeModal = useCallback(() => setIsOpen(false), []);
@@ -31,18 +29,6 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
     event.preventDefault();
     console.log(input)
     rent(input);
-  }
-
-  const handleWatchLog = async (event) => {
-    event.preventDefault();
-    await getLog(room.roomId);
-    console.log(allLog);
-    
-    if(viewLog) {
-      setViewLog(false);
-    } else {
-      setViewLog(true);
-    }
   }
 
   return (
@@ -69,7 +55,7 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
         <DropdownMenu class="btn btn-primary modalbtn" trigger="More">
           <DropdownItemGroup>
             <DropdownItem onClick={() => handleEditClick(room)}>Edit</DropdownItem>
-            <DropdownItem onClick={handleWatchLog}>History</DropdownItem>
+            <DropdownItem onClick={(event) => handleWatchLog(event, room)}>History</DropdownItem>
             <DropdownItem appearance="primary" onClick={openModal}>Rent</DropdownItem>
           </DropdownItemGroup>
         </DropdownMenu>
@@ -110,9 +96,10 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
         </button>
       </td>
     </tr>
-    {viewLog && allLog ?
+    {viewLog === room.roomId?
+      allLog.length > 0 ?
       <>
-          <tr>
+          <tr onClick={() => setViewLog(null)}>
             <th> </th>
             <th> </th>
             <th>Customer</th>
@@ -120,7 +107,7 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
             <th>Date</th>
           </tr>
         {allLog.map((log) => 
-          <tr onClick={() => setViewLog(false)} id={log.id}>
+          <tr>
             <td> </td>
             <td> </td>
             <td>{log.customerEmail}</td>
@@ -128,7 +115,7 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick }) => {
             <td>{log.date}</td>
           </tr>
         )}
-      </>
+      </> : <p onClick={() => setViewLog(null)}>No Customer Yet</p>
       : null}
   </>
   );

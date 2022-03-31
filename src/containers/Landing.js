@@ -4,10 +4,13 @@ import vintage from '../image/vintage-logo.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HandleChange from '../services/HandleChange'
 import { AuthContext } from '../services/Auth';
+import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
+import { useNavigate } from "react-router-dom";
 
 const Login = ()=> {
   const [loginUser, setLoginUser] = useState();
-  const { loginAuth, wrongPassword } = useContext(AuthContext);
+  const { loginAuth, wrongPassword, setRole } = useContext(AuthContext);
+  let navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -20,6 +23,18 @@ const Login = ()=> {
   const handleChange = (event) => {
     event.preventDefault();
     HandleChange(event, setLoginUser);
+  }
+
+  const handleOwnerRegis = (event) => {
+    event.preventDefault();
+    setRole({agent: false, owner: true,  customer: false});
+    navigate("../regis", { replace: true })
+  }
+
+  const handleAgentRegis = (event) => {
+    event.preventDefault();
+    setRole({agent: true, owner: true, customer: false});
+    navigate("../regis", { replace: true })
   }
   
   return (
@@ -50,10 +65,16 @@ const Login = ()=> {
               <label className="btn btn-primary l" onClick={handleSubmit}>ลงชื่อเข้าใช้</label>
             </div> 
             <br></br>
-          
-            <a className="App-link-create" href="/regis"  rel="noopener noreferrer">
+            <DropdownMenu class="btn btn-primary modalbtn" trigger={({triggerRef, ...providedProps}) => (
+              <a className="App-link-create" /*href="/regis"*/  rel="noopener noreferrer" {...providedProps} ref={triggerRef}>
                 สร้างบัญชี |
-            </a>
+              </a>
+            )}>
+              <DropdownItemGroup>
+                <DropdownItem onClick={handleOwnerRegis}>Owner</DropdownItem>
+                <DropdownItem onClick={handleAgentRegis}>Agency</DropdownItem>
+              </DropdownItemGroup>
+            </DropdownMenu>
             <a className="App-link-pass" href="/home" target="_blank" rel="noopener noreferrer">
                 ลืมรหัสผ่าน
             </a>
