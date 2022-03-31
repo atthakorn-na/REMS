@@ -57,6 +57,7 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick, handleWatchLog, view
             <DropdownItem onClick={() => handleEditClick(room)}>Edit</DropdownItem>
             <DropdownItem onClick={(event) => handleWatchLog(event, room)}>History</DropdownItem>
             <DropdownItem appearance="primary" onClick={openModal}>Rent</DropdownItem>
+            <DropdownItem onClick={() => handleDelete(room.roomId)}>Delete</DropdownItem>
           </DropdownItemGroup>
         </DropdownMenu>
         <ModalTransition>
@@ -88,12 +89,12 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick, handleWatchLog, view
         </ModalTransition>
       </td>
       <td> 
-        <button 
+        {/* <button 
           type="button" class="btn btn-danger modalbtn" 
           onClick={() => handleDelete(room.roomId)}
         >
           Delete
-        </button>
+        </button> */}
       </td>
     </tr>
     {viewLog === room.roomId?

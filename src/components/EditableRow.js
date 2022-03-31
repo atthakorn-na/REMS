@@ -77,7 +77,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed1"
+        <input className="ed6"
           type="text"
           required="required"
           placeholder="Building"
@@ -117,7 +117,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed9"
+        <input className="ed9f"
           type="text"
           required="required"
           placeholder="Rental Fee"

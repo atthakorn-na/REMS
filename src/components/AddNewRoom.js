@@ -24,7 +24,7 @@ const EditableRow = ({
       {user.agent ? null:
       <td>
         <label>Agency Email</label> 
-        <input className="ed3"
+        <input className="add1"
           type="text"
           required="required"
           placeholder="Agency Email"
@@ -35,7 +35,7 @@ const EditableRow = ({
       }
       <td>
         <label>Project Name</label>
-        <input className="ed4"
+        <input className="add2"
           type="text"
           required="required"
           placeholder="Project Name"
