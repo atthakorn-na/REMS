@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300&display=swap');
 body{
     background-color: #E5E5E5;
-    
+    font-family: 'Mitr', sans-serif;
 }
+
 .list_content{
     position: absolute;
     height: 100%;
     width: 900;
-    left: 310px;
+    left: 270px;
     margin-top: 12px ;
     
 }
@@ -16,10 +18,10 @@ body{
 }
 .ed1{
   width: 67px;
-  margin-left: -1px;
+  margin-left: 10px;
 }
 .ed2{
-  margin-left:-9px;
+  margin-left:-2px;
   width: 66px;
 }
 .ed3{
@@ -28,13 +30,13 @@ body{
 }
 .ed4{
   width: 67px;
-  margin-left: -12px;
+  margin-left: 15px;
 }
 .ed5{
   width: 85px;
   height: 80px;
   margin-bottom: -60px;
-  margin-left: -15px;
+  margin-left: 20px;
 }
 .ed6{
   width: 30px;
@@ -72,6 +74,7 @@ body{
     width: 125px;
     height: 43px;
     margin-top: -49px;
+    margin-right: 650px;
 }
 .modalbtn{
   width: 115px;
@@ -104,7 +107,7 @@ body{
 
 .content_tablelist{
   background-color: #ffffff;
-  width: 1800px;
+  width: 1900px;
   height: 70%;
 }
 .content_tablelist_book{

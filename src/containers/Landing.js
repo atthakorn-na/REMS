@@ -75,7 +75,7 @@ const Login = ()=> {
                 <DropdownItem onClick={handleAgentRegis}>Agency</DropdownItem>
               </DropdownItemGroup>
             </DropdownMenu>
-            <a className="App-link-pass" href="/home" target="_blank" rel="noopener noreferrer">
+            <a className="App-link-pass" href="https://www.facebook.com/photo/?fbid=2807313919530727&set=a.1375243776071089" target="_blank" rel="noopener noreferrer">
                 ลืมรหัสผ่าน
             </a>
           </form>

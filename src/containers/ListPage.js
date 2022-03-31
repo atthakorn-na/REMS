@@ -91,10 +91,7 @@ const ListPage = () => {
                   
                   <div class="gap-2 d-md-flex justify-content-md-end  ">
                     <button  class="btn btn-primary custombtn " variant="primary" onClick={() => setNewRoomStatus(true)}>
-                        เพิ่มห้อง
-                    </button>
-                    <button  class="btn btn-primary custombtn " variant="primary" onClick={handleShow}>
-                        จัดการห้องพัก
+                        +เพิ่มห้อง
                     </button>
                   </div>
                   </div> 

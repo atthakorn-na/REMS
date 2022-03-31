@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300&display=swap');
 .App {
   text-align: center;
   background-image: url("../image/wallpaper.jpg");
   background-size: 1980px 1080px;
+  font-family: 'Mitr', sans-serif;
 }
 
 .App-logo {
@@ -80,6 +82,7 @@ a2{
   font-size: 20px;
   line-height : 23px;
   margin-right: 14%;
+  width: 150px;
 }
 .t2{
   font-size: 20px;
