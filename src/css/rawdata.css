@@ -19,56 +19,116 @@ body{
 .ed1{
   width: 67px;
   margin-left: 10px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed1bd{
   width: 50px;
   margin-left: 5px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed2{
-  margin-left:-2px;
+  margin-left:16px;
   width: 66px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed3{
   width: 66px;
   margin-left: -19px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed4{
   width: 67px;
-  margin-left: 19px;
+  margin-left: 40px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed5{
   width: 85px;
-  height: 80px;
-  margin-bottom: -60px;
-  margin-left: 25px;
+  margin-left: -5px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed6{
   width: 30px;
   margin-left: 1px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed7{
   width: 40px;
   margin-left: 9px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
+.edf{
+  width: 40px;
+  margin-left: 19px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+
+
 .ed8{
-  width: 45px;
-  margin-left: 8px;
+  width: 35px;
+  margin-left: -2px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed9{
   width: 59px;
-  margin-left: -5px;
+  margin-left: 3px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed9f{
   width: 59px;
   margin-left: -15px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed10{
   width: 67px;
-  margin-left: -17px;
+  margin-left: -1px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .ed11{
   width: 67px;
-  margin-left: -5px;
+  margin-left: 3px;
+    border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }
 .list_head{
     height: 50px;
@@ -120,7 +180,7 @@ body{
   table {
     /* border-collapse: collapse; */
     width: 100%;
-    /* height: 50%; */
+    
   }
   
   th,
@@ -265,8 +325,132 @@ body{
 .salaryText{
   margin-left: 30px;
 }
-
+.textadd1{
+  margin-left: 190px;
+}
 .add1{
   width: 66px;
-  margin-left: -1px;
+  margin-left: 190px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd2{
+  margin-left: 100px;
+}
+.add2{
+  width: 66px;
+  margin-left: 100px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd3{
+  margin-left: -8px;
+}
+.add3{
+  margin-left: -8px;
+  width: 77px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd4{
+  margin-left: 18px;
+}
+.add4{
+  margin-left: 18px;
+  width: 30px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd5{
+  margin-left: 7px;
+}
+.add5{
+  margin-left: 7px;
+  width: 66px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd6{
+  margin-left: 2px;
+}
+.add6{
+  margin-left: 2px;
+  width: 66px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd7{
+  margin-left: -3px;
+}
+.add7{
+  margin-left: -3px;
+  width: 30px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd8{
+  margin-left: 3px;
+}
+.add8{
+  margin-left: 3px;
+  width: 30px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd9{
+  margin-left: 4px;
+}
+.add9{
+  margin-left: 4px;
+  width: 50px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+
+.add10{
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  width: 50px;
+}
+.textadd11{
+  margin-left: 4px;
+}
+.add11{
+  margin-left: 4px;
+  width: 72px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+.textadd12{
+  margin-left: 1px;
+}
+.add12{
+  margin-left: 1px;
+  width: 66px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
 }

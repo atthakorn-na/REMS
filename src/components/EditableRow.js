@@ -47,7 +47,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed4"
+        <input className="ed5"
           type="text"
           required="required"
           placeholder="Location"
@@ -77,7 +77,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed6"
+        <input className="ed7"
           type="text"
           required="required"
           placeholder="Building"
@@ -87,7 +87,7 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <input className="ed7"
+        <input className="edf"
           type="text"
           required="required"
           placeholder="Floor"

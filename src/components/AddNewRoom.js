@@ -3,7 +3,8 @@ import '../css/rawdata.css';
 const EditableRow = ({
   handleChange, 
   handleSubmit,
-  user
+  user,
+  handleClose
 }) => {
   return (
   
@@ -23,29 +24,29 @@ const EditableRow = ({
       }
       {user.agent ? null:
       <td>
-        <label>Agency Email</label> 
+        <label className="textadd1">Agency Email</label> 
         <input className="add1"
           type="text"
           required="required"
-          placeholder="Agency Email"
+          placeholder="Agency "
           name="agentEmail"
           onChange={handleChange}
         />
       </td>
       }
       <td>
-        <label>Project Name</label>
+        <label className="textadd2">Project Name</label>
         <input className="add2"
           type="text"
           required="required"
-          placeholder="Project Name"
+          placeholder="Name"
           name="project"
           onChange={handleChange}
         />
       </td>
       <td>
-        <label>Location</label>
-        <input className="ed4"
+        <label className="textadd3">Location</label>
+        <input className="add3"
           type="text"
           required="required"
           placeholder="Location"
@@ -54,8 +55,8 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Unit No.</label>
-        <input className="ed6"
+        <label className="textadd4">Unit No.</label>
+        <input className="add4"
           type="text"
           required="required"
           placeholder="Unit No."
@@ -64,8 +65,8 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Direction</label>
-        <input className="ed1"
+        <label className="textadd5">Direction</label>
+        <input className="add5"
           type="text"
           required="required"
           placeholder="Direction"
@@ -74,8 +75,8 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Building</label>
-        <input className="ed1"
+        <label className="textadd6">Building</label>
+        <input className="add6"
           type="text"
           required="required"
           placeholder="Building"
@@ -84,18 +85,18 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Floor</label>
-        <input className="ed1"
+        <label  className="textadd7">Floor</label>
+        <input className="add7"
           type="text"
           required="required"
-          placeholder="Floor"
+          placeholder=""
           name="floor"
           onChange={handleChange}
         />
       </td>
       <td>
-        <label>Size</label>
-        <input className="ed1"
+        <label className="textadd8">Size</label>
+        <input className="add8"
           type="text"
           required="required"
           placeholder="Size"
@@ -104,8 +105,8 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Type</label>
-        <input className="ed1"
+        <label className="textadd9">Type</label>
+        <input className="add9"
           type="text"
           required="required"
           placeholder="Type"
@@ -114,8 +115,8 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Rental Fee</label>
-        <input className="ed1"
+        <label className="textadd10">Rental Fee</label>
+        <input className="add10"
           type="text"
           required="required"
           placeholder="Rental Fee"
@@ -124,8 +125,8 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Negotiate</label>
-        <input className="ed1"
+        <label className="textadd11">Negotiate</label>
+        <input className="add11"
           type="text"
           required="required"
           placeholder="Negotiate"
@@ -134,8 +135,8 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <label>Remark</label>
-        <input className="ed1"
+        <label className="textadd12">Remark</label>
+        <input className="add12"
           type="text"
           required="required"
           placeholder="Remark"
