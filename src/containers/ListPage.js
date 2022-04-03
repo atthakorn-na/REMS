@@ -23,7 +23,7 @@ const ListPage = () => {
     const [newRoom, setNewRoom] = useState();
     const [newRoomStatus, setNewRoomStatus] = useState(false);
     const [viewLog, setViewLog] = useState(false);
-    
+
     useEffect(() => {
       setAllList(rooms);
     }, [rooms]);
@@ -53,10 +53,6 @@ const ListPage = () => {
     alert("ลบห้องพักสำเร็จ");               
   };
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   //Add Room
   const handleChangeAddRoom = (event) => HandleChange(event, setNewRoom);
 
@@ -75,9 +71,14 @@ const ListPage = () => {
 
   const handleWatchLog = async (event, target) => {
     event.preventDefault();
-    await getLog(target.roomId);
-    console.log(allLog);
-    setViewLog(target.roomId)
+    if(!viewLog) {
+      await getLog(target.roomId);
+      console.log(allLog);
+      setViewLog(target.roomId)
+    } else {
+      setViewLog(null);
+    }
+
   }
         
       return(
@@ -88,56 +89,54 @@ const ListPage = () => {
               <div class='list_content'>
                 <div className='list_head'>
                   <h1>รายการห้องพัก</h1>
-                  
                   <div class="gap-2 d-md-flex justify-content-md-end  ">
-                    <button  class="btn btn-primary custombtn " variant="primary" onClick={() => setNewRoomStatus(true)}>
-                        +เพิ่มห้อง
+                    <button  class="btn btn-primary custombtn " variant="primary" onClick={() => newRoomStatus ? setNewRoomStatus(false) : setNewRoomStatus(true)}>
+                        เพิ่มห้อง
                     </button>
                   </div>
                   </div> 
-                  <div className='content_tablelist'>
-              <form >
-                {newRoomStatus ? <AddNewRoom handleChange={handleChangeAddRoom} handleSubmit={handleAddRoom} user={currentUser} /> : null}
-                  <table>
-                    <thead>
-                      <tr>
-                      <th>Status</th>
-                      <th>Owner</th>
-                      <th>Agency</th>
-                      <th>Customer</th>
-                      <th>Project</th>
-                      <th>Location</th>
-                      <th>Unit No.</th>
-                      <th>Direction</th>
-                      <th>Building</th>
-                      <th>Floor</th>
-                      <th>Size (m²)</th>
-                      <th>Type</th>
-                      <th>Fee</th>
-                      <th>Negotiate</th>
-                      <th>Remark</th>
-                      <th>Receive Date</th>
-                      <th>Last Update</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {allList.map((room) => 
-                        room.roomId !== Status ?
-                        <ReadOnlyRow room={room} handleDelete={handleDelete} handleEditClick={handleEditClick} handleWatchLog={handleWatchLog} viewLog={viewLog} setViewLog={setViewLog}/> :
-                        <EditableRow editData={EditCondo} handleChange={handleChangeEditForm} handleSubmit={handleSubmitEdit} handleCancel={handleCancel}/>
-                      )}
-                    </tbody>
-                  </table>
-              </form>
+                  {/* <div className='content_tablelist'> */}
+                      {newRoomStatus ? <AddNewRoom handleChange={handleChangeAddRoom} handleSubmit={handleAddRoom} user={currentUser} /> : null}
+                        <table>
+                          <thead>
+                            <tr>
+                            <th>Status</th>
+                            <th>Owner</th>
+                            <th>Agency</th>
+                            <th>Customer</th>
+                            <th>Project</th>
+                            <th>Location</th>
+                            <th>Unit No.</th>
+                            <th>Direction</th>
+                            <th>Building</th>
+                            <th>Floor</th>
+                            <th>Size (m²)</th>
+                            <th>Type</th>
+                            <th>Fee</th>
+                            <th>Negotiate</th>
+                            <th>Remark</th>
+                            <th>Receive Date</th>
+                            <th>Last Update</th>
+                            <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {allList.map((room) => 
+                              room.roomId !== Status ?
+                              <ReadOnlyRow room={room} handleDelete={handleDelete} handleEditClick={handleEditClick} handleWatchLog={handleWatchLog} viewLog={viewLog} setViewLog={setViewLog}/> :
+                              <EditableRow editData={EditCondo} handleChange={handleChangeEditForm} handleSubmit={handleSubmitEdit} handleCancel={handleCancel}/>
+                            )}
+                          </tbody>
+                        </table>
+                  {/* </div> */}
               </div>
-              </div>
-          </body>
+            </body>
           <div>  
           </div>
       <Navbar>
       </Navbar>
     </>
-    : <h1>ROOM NOT FOUND !!</h1>}
+    : <h1>Loading</h1>}
 
     </>
   );  

@@ -1,17 +1,14 @@
 
 import React, { useState, useCallback, useContext } from "react";
 
-import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
-import Modal, {
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  ModalTitle,
-  ModalTransition,
-} from '@atlaskit/modal-dialog';
-import HandleChange from '../services/HandleChange'
+// import Calendar from '@atlaskit/calendar';
 
+import HandleChange from '../services/HandleChange'
+import DropDown from './DropDown'
 import { AuthContext } from '../services/Auth'
+import ModalRent from "./ModalRent";
+import ThaiDate from '../services/ThaiDate';
+import Badge from '@atlaskit/badge';
 
 
 const ReadOnlyRow = ({ room, handleDelete, handleEditClick, handleWatchLog, viewLog, setViewLog }) => {
@@ -20,7 +17,6 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick, handleWatchLog, view
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState({roomId: room.roomId, ownerEmail: room.ownerEmail, agentEmail: room.agentEmail, fee: room.fee});
 
-  const openModal = useCallback(() => setIsOpen(true), []);
   const closeModal = useCallback(() => setIsOpen(false), []);
 
   const handleChange = (event) => HandleChange(event, setInput);
@@ -33,8 +29,8 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick, handleWatchLog, view
 
   return (
   <>
-    <tr id={room.roomId} key={room.roomId}>
-      <td>{room.status}</td>
+    <tr id={room.roomId} key={room.roomId} style={{}}>
+      <td>{room.status === 'Available' ? <Badge appearance="primary">{room.status}</Badge> : <Badge appearance="important">{room.status}</Badge>}</td>
       <td>{room.ownerEmail}</td>
       <td>{room.agentEmail}</td>
       {room.customerEmail ? <td>{room.customerEmail}</td> : <td> - </td>}
@@ -49,52 +45,11 @@ const ReadOnlyRow = ({ room, handleDelete, handleEditClick, handleWatchLog, view
       <td>{room.fee}</td>
       {room.negotiate ? <td>{room.negotiate}</td> : <td> - </td>}
       {room.remark ? <td>{room.remark}</td> : <td> - </td>}
-      <td>{room.dateReceive}</td>
-      {room.update ? <td>{room.update}</td> : <td> - </td>}
+      <td>{ThaiDate(room.dateReceive)}</td>
+      {room.update ? <td>{ThaiDate(room.update)}</td> : <td> - </td>}
       <td>
-        <DropdownMenu class="btn btn-primary modalbtn" trigger="More">
-          <DropdownItemGroup>
-            <DropdownItem onClick={() => handleEditClick(room)}>Edit</DropdownItem>
-            <DropdownItem onClick={(event) => handleWatchLog(event, room)}>History</DropdownItem>
-            <DropdownItem appearance="primary" onClick={openModal}>Rent</DropdownItem>
-            <DropdownItem onClick={() => handleDelete(room.roomId)}>Delete</DropdownItem>
-          </DropdownItemGroup>
-        </DropdownMenu>
-        <ModalTransition>
-          {isOpen && (
-            <Modal onClose={closeModal}>
-              <ModalHeader>
-                <ModalTitle>Rental Detail</ModalTitle>
-              </ModalHeader>
-              <ModalBody>
-                <input type="text"
-                  required="required"
-                  placeholder="Customer Email"
-                  name="customerEmail"
-                  onChange={handleChange} 
-                />
-                <input type="text"
-                  required="required"
-                  placeholder="Rent Date"
-                  name="date"
-                  onChange={handleChange}
-                />
-              </ModalBody>
-              <ModalFooter>
-                <button appearance="subtle" onClick={closeModal} autoFocus>Cancel</button>
-                <button appearance="primary" onClick={handleSubmit}>Rent</button>
-              </ModalFooter>
-            </Modal>
-          )}
-        </ModalTransition>
-      </td>
-      <td> 
-        {/* <button 
-          type="button" class="btn btn-danger modalbtn" 
-          onClick={() => handleDelete(room.roomId)}
-        >
-          Delete
-        </button> */}
+        <DropDown room={room} handleEditClick={handleEditClick} handleWatchLog={handleWatchLog} isOpen={isOpen} handleDelete={handleDelete} setIsOpen={setIsOpen}/>  
+        {isOpen ? <ModalRent isOpen={isOpen} closeModal={closeModal} handleChange={handleChange} handleSubmit={handleSubmit}/> : null}
       </td>
     </tr>
     {viewLog === room.roomId?

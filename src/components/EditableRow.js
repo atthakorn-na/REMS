@@ -1,5 +1,7 @@
 import React from "react";
 import '../css/rawdata.css';
+import ThaiDate from "../services/ThaiDate";
+
 const EditableRow = ({
   handleChange, 
   editData, 
@@ -147,10 +149,10 @@ const EditableRow = ({
         />
       </td>
       <td>
-        <p>{editData.dateReceive}</p>
+        <p>{ThaiDate(editData.dateReceive)}</p>
       </td>
       <td>
-        <p>{editData.update ? editData.update: '-' }</p>
+        <p>{editData.update ? ThaiDate(editData.update): '-' }</p>
       </td>
       <td><button class="btn btn-primary modalbtn " onClick={(event) => handleSubmit(event)}>Save</button></td>
       <td><button class="btn btn-danger closebtne" onClick={() => handleCancel()}>X</button></td>  

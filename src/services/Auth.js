@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HTTP } from './axios'
 import { useNavigate } from "react-router-dom";
 import { ServiceEndpoint } from '../types/Services'
@@ -12,6 +12,16 @@ export const AuthProvider = ({ children }) => {
     const [allLog, setAllLog] = useState(null);
     const [role, setRole] = useState();
     let navigate = useNavigate();
+
+    useEffect(() => {
+      if(localStorage.getItem("user") != null) {
+        setCurrentUser(JSON.parse(localStorage.getItem("user")));
+        setRooms(JSON.parse(localStorage.getItem("rooms")));
+        console.log(JSON.parse(localStorage.getItem("user")))
+      } else {
+        navigate("../", { replace: true })
+      }
+    }, [])
     
     if(!AuthContext){
       throw new Error('useAuth must be used inside children of AuthProvider only')
@@ -28,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         await HTTP(requestOptions)
           .then(response => {
             if (response.data) {
+              response.data.password = "";
               localStorage.setItem("user", JSON.stringify(response.data));
               setCurrentUser(JSON.parse(localStorage.getItem("user")));
               console.log(currentUser)
@@ -227,6 +238,23 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
+    async function getAllLog(user) {
+      try {
+        const requestOptions = {
+          method: 'GET',
+          url: ServiceEndpoint.allLog,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify(user)
+        };
+        await HTTP(requestOptions)
+          .then(response => {
+            setAllLog(response.data);
+          })
+      } catch (error) {
+        alert(error);
+      }
+    }
+
     return (
         <AuthContext.Provider value={{
           currentUser, 
@@ -245,7 +273,8 @@ export const AuthProvider = ({ children }) => {
           updateRoom,
           rent,
           allLog,
-          getLog
+          getLog,
+          getAllLog
           }}>
             {children}
         </AuthContext.Provider>

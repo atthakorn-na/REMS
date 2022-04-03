@@ -21,7 +21,7 @@ const Profile = () => {
 
     useEffect(() => {
         setNewProfile(currentUser);
-    },[])
+    },[currentUser])
 
     const handleProfileChange = (event) => HandleChange(event, setNewProfile);
     const handleEditProfileBtn = () => setUpdateProfileStatus(true);

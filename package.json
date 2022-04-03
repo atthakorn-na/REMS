@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@atlaskit/badge": "^15.0.10",
     "@atlaskit/dropdown-menu": "^11.1.2",
     "@atlaskit/modal-dialog": "^12.2.5",
     "@testing-library/jest-dom": "^5.15.1",

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import 'boxicons';
 import '../css/rawdata.css';
@@ -16,42 +16,50 @@ import {
   CartesianGrid,
   Bar,
 } from "recharts";
+
 const Home = () => {
   const { currentUser, rooms } = useContext(AuthContext);
   let avgPrice = 0;
   let roomValue = 0;
+  const [totalRoom, setTotalRoom] = useState(null);
 
-  if (rooms.length > 0) {
-    for(let room in rooms) {
-      roomValue += rooms[room].fee;
+  useEffect(() => {
+    setTotalRoom(rooms);
+  }, [rooms])
+
+  if (totalRoom !== null) {
+    if (rooms.length > 0) {
+      for(let room in rooms) {
+        roomValue += rooms[room].fee;
+      }
+      avgPrice = Math.floor(roomValue/rooms.length);
     }
-    avgPrice = Math.floor(roomValue/rooms.length);
   }
+  
 
   const data = [
     { name: "รายได้เฉลี่ย", prices: avgPrice},
     { name: "รายได้ทั้งหมด", prices: roomValue },
-    
   ];
   const data2 = [
     { name: "ธันวาคม",salary:5875},
     { name: "มกราคม",salary:8476.85},
     { name: "กุมภาพันธ์",salary:12875},
     { name: "รายได้เฉลี่ย", salary: avgPrice},
-    
   ];
 
   return (
+    totalRoom ?
       <div> 
         <div className='home_content'>
           <div className='home_head'>
             <h1>Dashboard</h1>
             <h5 className='dohome'>Welcome {currentUser?.firstName} {currentUser?.lastName}</h5>
-            {rooms.length > 0 ? (
+            {totalRoom.length > 0 ? (
             <>
               <div className='total-room-text'>
               <i class='bx bx-heart-circle'></i>
-              <h6 className='texth-1'>{rooms.length}</h6>
+              <h6 className='texth-1'>{totalRoom.length}</h6>
               <h6 className='texth-11'>ห้องทั้งหมด</h6>
               </div>
               <div className='total-room-value'>
@@ -125,6 +133,7 @@ const Home = () => {
             <Navbar> 
             </Navbar>
       </div>
+      : <h1>Loading</h1>
 );
  
 }

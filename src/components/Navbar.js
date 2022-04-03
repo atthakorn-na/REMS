@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../services/Auth';
 import 'boxicons';
 import '../css/nav.css';
@@ -8,9 +8,15 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
     
   const { currentUser, logoutAuth } = useContext(AuthContext);  
+  const [user, setUser] = useState();
   let navigate = useNavigate();
 
+  useEffect(() => {
+    setUser(currentUser);
+  },[currentUser])
+
   return ( 
+    user ?
     <div>
       <head>
       <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'></link>
@@ -37,12 +43,12 @@ const Navbar = () => {
               <span class='links_name'>รายการห้องพัก</span>
             </a>
           </li>
-          <li>
+          {/* <li>
             <a onClick={() => navigate("../rent", { replace: true })}>
             <i class='bx bxs-book-open' ></i>
               <span class='links_name'>อนุมัติปล่อยเช่า</span>
             </a>
-          </li>
+          </li> */}
           <li>
             <a onClick={() => navigate("../profile", { replace: true })}>
               <i class='bx bx-user'></i>
@@ -68,6 +74,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    : <p>Loading</p>
   );
     
 }
