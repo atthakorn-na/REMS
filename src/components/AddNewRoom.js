@@ -12,8 +12,8 @@ const EditableRow = ({
       <div className="edit-table">
       {user.owner ? null:
       <td>
-        <label>Owner Email</label>
-        <input className="ed2"
+        <label className="textadd1-1">Owner Email</label>
+        <input className="add1-1"
           type="text"
           required="required"
           placeholder="Owner Email"

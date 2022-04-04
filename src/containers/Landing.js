@@ -50,7 +50,7 @@ const Login = ()=> {
             <a2>ยินดีต้อนรับ</a2>
             <div className="form-email-login">
               <div class="form-email-real">
-                <input /*type="email"*/ name="email" className="form-control" id="inputEmail3" placeholder="อีเมลล์หรือชื่อผู้ใช้" onChange={handleChange}></input>
+                <input  name="email" className="form-control" id="inputEmail3" placeholder="อีเมลล์หรือชื่อผู้ใช้" onChange={handleChange}></input>
               </div>
             </div>
             <br></br>

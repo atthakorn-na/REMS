@@ -339,6 +339,17 @@ td {
   border-left-style: hidden;
   border-bottom-style: groove;
 }
+.textadd1-1{
+  margin-left: 96px;
+}
+.add1-1{
+  width: 66px;
+  margin-left: 96px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
 .textadd2{
   margin-left: 100px;
 }

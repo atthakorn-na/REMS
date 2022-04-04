@@ -55,8 +55,7 @@ const Home = () => {
           <div className='home_head'>
             <h1>Dashboard</h1>
             <h5 className='dohome'>Welcome {currentUser?.firstName} {currentUser?.lastName}</h5>
-            {totalRoom.length > 0 ? (
-            <>
+            {totalRoom.length > 0 ? (<>
               <div className='total-room-text'>
               <i class='bx bx-heart-circle'></i>
               <h6 className='texth-1'>{totalRoom.length}</h6>
@@ -73,59 +72,24 @@ const Home = () => {
               <h6 className='texth-33'>รายได้เฉลี่ย/ห้อง</h6>
               </div>
               <div className='pie'>
-                <div className='pietext'>
-                  <br></br>
+                <div className='pietext'><br></br>
                 <h5 >รายได้ทั้งหมดต่อรายได้เฉลี่ย</h5>
                 </div>
-                  <PieChart  width={400} height={400} margin={{top:-75,left:-20
-                      }}>
-                    <Pie
-                      dataKey="prices"
-                      isAnimationActive={false}
-                      data={data}
-                      cx={200}
-                      cy={200}
-                      outerRadius={80}
-                      fill="#FF8F6B"
-                      label
-                    />
-                    <Tooltip />
+                  <PieChart  width={400} height={400} margin={{top:-75,left:-20}}>
+                    <Pie dataKey="prices" isAnimationActive={false} data={data} cx={200} cy={200}outerRadius={80} fill="#FF8F6B"label/><Tooltip />
                   </PieChart>
                   </div>
-
                 <div className='salarypermonth'>
                   <br></br>
-                  <div className='salaryText'>
-                    <h5>รายได้เฉลี่ยในแต่ละเดือน</h5>
-                  </div>
-                  <br></br>
-                  <br></br>
-                  <BarChart
-                    width={500}
-                    height={300}
-                    data={data2}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 80,
-                      bottom: 5,
-                    }}
-                    barSize={25}
-        >
-                {/*fix barchart */}
-                <XAxis dataKey="name"
-                  scale="point"
-                  padding={{ left: 15, right: 10 }}
-                />
-                <YAxis />
-                <Tooltip/>
-                <Legend />
+                  <div className='salaryText'><h5>รายได้เฉลี่ยในแต่ละเดือน</h5></div><br></br><br></br>
+                  <BarChart width={500} height={300} data={data2}
+                    margin={{top: 5,right: 30,left: 80,bottom: 5,}}barSize={25}>
+                <XAxis dataKey="name" scale="point" padding={{ left: 15, right: 10 }}/><YAxis />
+                <Tooltip/><Legend />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="salary" fill="#8884d8" background={{ fill: "#eee" }} />
                 </BarChart>
               </div>
-
-
             </>)
             : <h6>You have no room</h6>}
           </div>

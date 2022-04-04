@@ -40,7 +40,7 @@ const Regis = () => {
         <br></br>
         <div className="form-email">
         <div class="form-email-real">
-          <input /*type="email"*/ name="email" class="form-control" id="inputEmail3" placeholder="อีเมลล์หรือชื่อผู้ใช้" onChange={handleChange}/>
+          <input name="email" class="form-control" id="inputEmail3" placeholder="อีเมลล์หรือชื่อผู้ใช้" onChange={handleChange}/>
         </div>
         <br></br>
         <div class="form-email-real">
@@ -58,16 +58,13 @@ const Regis = () => {
         </div>
       </div>
       <br></br>
-      
       <div class="form-button">
         <button type="submit" class="btn btn-primary e" onClick={handleSubmit} >สมัครสมาชิก</button>
-    
       </div> 
       <br></br>
       <button type="submit" class="btn btn-primary e" onClick={() => navigate("../", { replace: true })} >กลับหน้าแรก</button>
     </form>
     </div>
-          
       </header>
   </div>
   );

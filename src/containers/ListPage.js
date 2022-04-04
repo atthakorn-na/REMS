@@ -94,28 +94,14 @@ const ListPage = () => {
                         เพิ่มห้อง
                     </button>
                   </div>
-                  </div> 
-                  {/* <div className='content_tablelist'> */}
+                  </div> {/* <div className='content_tablelist'> */}
                       {newRoomStatus ? <AddNewRoom handleChange={handleChangeAddRoom} handleSubmit={handleAddRoom} user={currentUser} /> : null}
                         <table>
                           <thead>
                             <tr>
-                            <th>Status</th>
-                            <th>Owner</th>
-                            <th>Agency</th>
-                            <th>Customer</th>
-                            <th>Project</th>
-                            <th>Location</th>
-                            <th>Unit No.</th>
-                            <th>Direction</th>
-                            <th>Building</th>
-                            <th>Floor</th>
-                            <th>Size (m²)</th>
-                            <th>Type</th>
-                            <th>Fee</th>
-                            <th>Negotiate</th>
-                            <th>Remark</th>
-                            <th>Receive Date</th>
+                            <th>Status</th><th>Owner</th><th>Agency</th><th>Customer</th><th>Project</th><th>Location</th><th>Unit No.</th>
+                            <th>Direction</th><th>Building</th><th>Floor</th><th>Size (m²)</th><th>Type</th><th>Fee</th><th>Negotiate</th>
+                            <th>Remark</th><th>Receive Date</th>
                             <th>Last Update</th>
                             <th>Actions</th>
                             </tr>
@@ -127,8 +113,7 @@ const ListPage = () => {
                               <EditableRow editData={EditCondo} handleChange={handleChangeEditForm} handleSubmit={handleSubmitEdit} handleCancel={handleCancel}/>
                             )}
                           </tbody>
-                        </table>
-                  {/* </div> */}
+                        </table>{/* </div> */}
               </div>
             </body>
           <div>  
@@ -137,10 +122,8 @@ const ListPage = () => {
       </Navbar>
     </>
     : <h1>Loading</h1>}
-
     </>
   );  
-    
 }
 
 export default ListPage;
